@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 18:10:02 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/20 23:00:01 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/21 23:44:15 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	std::srand(std::time(NULL));
 	for (int i = 0; i < 10; ++i)
 	{
-		zmb_event.setZombieType(std::rand() % ZombieEvent::numZombieTypes);
+		zmb_event.setZombieType(Zombie::zombieTypes[std::rand() % Zombie::numZombieTypes]);
 		delete zmb_event.randomChump();
 	}
 	return (0);

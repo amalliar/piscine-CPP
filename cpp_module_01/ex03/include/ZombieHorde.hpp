@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 20:13:00 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 00:26:51 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/21 23:55:15 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 # include <string>
 # include <cstdlib>
 # include "Zombie.hpp"
-# include "ZombieEvent.hpp"
 
 class					ZombieHorde
 {
 	public:
 		void			announce(void) const;
 
-						ZombieHorde(int zmbHordeSize);
+						ZombieHorde(size_t zmbHordeSize);
 						ZombieHorde(ZombieHorde const &rSrc);
 						~ZombieHorde(void);
 		ZombieHorde		&operator=(ZombieHorde const &rRhs);

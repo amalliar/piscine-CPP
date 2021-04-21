@@ -6,59 +6,42 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:09:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/20 23:01:29 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/21 23:49:54 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ZombieEvent.hpp"
 
-std::string		ZombieEvent::zombieTypes[ZombieEvent::numZombieTypes] =
+int				ZombieEvent::setZombieType(std::string const &rType)
 {
-	"Zombie",
-	"Flag Zombie",
-	"Conehead Zombie",
-	"Pole Vaulting Zombie",
-	"Buckethead Zombie",
-	"Football Zombie",
-	"Dancing Zombie",
-	"Zomboni",
-	"Pogo Zombie",
-	"Bungee Zombie",
-	"Zombie Yeti"
-};
-
-int				ZombieEvent::setZombieType(int type)
-{
-	if (type >= 0 && type < numZombieTypes)
-	{
-		this->_curZombieType = type;
-		return (0);
-	}
-	return (-1);
+	for (size_t i = 0; i < Zombie::numZombieTypes; ++i)
+		if (!rType.compare(Zombie::zombieTypes[i]))
+		{
+			this->_curZombieType = rType;
+			return (0);
+		}
+	return (1);
 }
 
 Zombie			*ZombieEvent::newZombie(std::string const &rName) const
 {
-	return (new Zombie(rName, zombieTypes[this->_curZombieType]));
+	return (new Zombie(rName, this->_curZombieType));
 }
 
 Zombie			*ZombieEvent::randomChump(void) const
 {
-	std::string const	names[] = 
-	{
-		"Martin", "Tyler", "Victor", "Arron", "Norman", "Oliver",
-		"Olyvia", "Patric", "Paula", "Peter", "Philip", "Rachel"
-	};	
-	size_t			num_names = sizeof(names) / sizeof(std::string);
-	Zombie			*zmb;
+	Zombie	*zmb;
 
-	zmb = this->newZombie((this->_curZombieType == 10) ? "???" : names[std::rand() % num_names]);
+	zmb = new Zombie();
+	if (this->_curZombieType == "Zombie Yeti")
+		zmb->setName("???");
+	zmb->setType(this->_curZombieType);
 	zmb->announce();
 	return (zmb);
 }
 
 				ZombieEvent::ZombieEvent(void) :
-				_curZombieType(0)
+				_curZombieType(Zombie::zombieTypes[0])
 {
 }
 

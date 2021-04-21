@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/04/21 00:09:28 by amalliar         ###   ########.fr        #
+#    Updated: 2021/04/21 23:55:00 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ DEPDIR     := .dep
 
 SRCS       := main.cpp \
               Zombie.cpp \
-              ZombieEvent.cpp \
               ZombieHorde.cpp
 SRCS       := $(addprefix $(SRCDIR)/, $(SRCS))
 OBJS       := $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)

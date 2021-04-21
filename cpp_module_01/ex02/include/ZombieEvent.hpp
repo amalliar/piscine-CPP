@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:09:07 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/20 22:59:17 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/21 23:22:28 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ class							Zombie;
 class							ZombieEvent
 {
 	public:
-		static const int		numZombieTypes = 11;
-		static std::string		zombieTypes[numZombieTypes];
-
-		int						setZombieType(int type);
+		int						setZombieType(std::string const &rType);
 		Zombie					*newZombie(std::string const &rName) const;
 		Zombie					*randomChump(void) const;
 
@@ -34,7 +31,7 @@ class							ZombieEvent
 		ZombieEvent				&operator=(ZombieEvent const &rRhs);
 
 	private:
-		int						_curZombieType;
+		std::string				_curZombieType;
 };
 
 #endif // ZOMBIE_EVENT_HPP
