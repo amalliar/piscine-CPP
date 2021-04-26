@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:04:27 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/23 05:07:21 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 00:00:17 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ std::queue<t_tok>	*parser_build(std::list<t_tok> const &rTokList)
 			size_t idx;
 			try
 			{
-				token.fval = Fixed(std::stof(token.data, &idx));
-				if (idx != token.data.length())
+				token.fixedNum = Fixed(std::stof(token.sData, &idx));
+				if (idx != token.sData.length())
 					exit_error("eval_expr: invalid argument", 1);
 			}
 			catch (std::invalid_argument &ia)
@@ -45,7 +45,7 @@ std::queue<t_tok>	*parser_build(std::list<t_tok> const &rTokList)
 		else if (token.type == TT_OPERATOR)
 		{
 			while (!p_oper_stack->empty() && p_oper_stack->top().type == TT_OPERATOR && \
-				oper_precedence(token.data[0]) <= oper_precedence(p_oper_stack->top().data[0]))
+				oper_precedence(token.sData[0]) <= oper_precedence(p_oper_stack->top().sData[0]))
 			{
 				p_out_queue->push(p_oper_stack->top());
 				p_oper_stack->pop();

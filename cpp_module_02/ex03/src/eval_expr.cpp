@@ -6,13 +6,25 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:07:34 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/23 05:08:21 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 00:29:05 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "eval_expr.hpp"
 
-Fixed		eval_expr(std::queue<t_tok> &rRpnQueue)
+static Fixed	apply_oper(Fixed const &lhs, Fixed const &rhs, char oper)
+{
+	if (oper == '+')
+		return (lhs + rhs);
+	if (oper == '-')
+		return (lhs - rhs);
+	if (oper == '*')
+		return (lhs * rhs);
+	if (oper == '/')
+		return (lhs / rhs);
+}
+
+Fixed			eval_expr(std::queue<t_tok> &rRpnQueue)
 {
 	std::stack<t_tok>			expr_stack;
 	std::pair<t_tok, t_tok>		operands;
@@ -28,28 +40,14 @@ Fixed		eval_expr(std::queue<t_tok> &rRpnQueue)
 		{
 			operands.second = expr_stack.top();
 			expr_stack.pop();
-			operands.first.fval = Fixed(0);
+			operands.first.fixedNum = Fixed(0);
 			if (expr_stack.size() > 0)
 			{
 				operands.first = expr_stack.top();
 				expr_stack.pop();
 			}
+			token.fixedNum = apply_oper(operands.first.fixedNum, operands.second.fixedNum, token.sData[0]);
 			token.type = TT_NUMBER;
-			switch (token.data[0])
-			{
-				case	'+':
-					token.fval = Fixed(operands.first.fval + operands.second.fval);
-					break ;
-				case	'-':
-					token.fval = Fixed(operands.first.fval - operands.second.fval);
-					break ;
-				case	'*':
-					token.fval = Fixed(operands.first.fval * operands.second.fval);
-					break ;
-				case	'/':
-					token.fval = Fixed(operands.first.fval / operands.second.fval);
-					break ;
-			}
 			expr_stack.push(token);
 		}
 		else
@@ -57,5 +55,5 @@ Fixed		eval_expr(std::queue<t_tok> &rRpnQueue)
 	}
 	if (expr_stack.size() != 1)
 		exit_error("eval_expr: parse error", 1);
-	return (expr_stack.top().fval);
+	return (expr_stack.top().fixedNum);
 }

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:10:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/23 05:22:34 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/26 23:58:30 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ enum				e_tok_types
 typedef struct		s_tok
 {
 	int				type;
-	std::string		data;
-	Fixed			fval;
+	std::string		sData;
+	Fixed			fixedNum;
 }					t_tok;
 
 std::list<t_tok>	*lexer_build(std::string const &rExpr);

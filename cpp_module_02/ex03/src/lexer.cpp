@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:01:53 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/23 05:05:48 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 00:34:53 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,33 @@ std::list<t_tok>	*lexer_build(std::string const &rExpr)
 		if (char_parenth.find(c) != std::string::npos || \
 			char_operator.find(c) != std::string::npos)
 		{
-			if (!token.data.empty())
+			if (!token.sData.empty())
 				p_tok_list->push_back(token);
-			token.data = c;
-			switch	(c)
-			{
-				case	'(':
-					token.type = TT_LEFT_PARENTH;
-					break ;
-				case	')':
-					token.type = TT_RIGHT_PARENTH;
-					break ;
-				default:
-					token.type = TT_OPERATOR;
-					break ;
-			}
+			token.sData = c;
+			if (c == '(')
+				token.type = TT_LEFT_PARENTH;
+			else if (c == ')')
+				token.type = TT_RIGHT_PARENTH;
+			else
+				token.type = TT_OPERATOR;
 			p_tok_list->push_back(token);
-			token.data.erase();
+			token.sData.erase();
 		}
 		else if (char_number.find(c) != std::string::npos)
 		{
-			token.data += c;
+			token.sData += c;
 			token.type = TT_NUMBER;
 		}
 		else if (std::isspace(c))
 		{
-			if (!token.data.empty())
+			if (!token.sData.empty())
 				p_tok_list->push_back(token);
-			token.data.erase();
+			token.sData.erase();
 		}
 		else
 			exit_error(std::string("eval_expr: illegal character: ") + c, 1);
 	}
-	if (!token.data.empty())
+	if (!token.sData.empty())
 		p_tok_list->push_back(token);
 	return (p_tok_list);
 }

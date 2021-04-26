@@ -6,13 +6,13 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/04/23 05:19:16 by amalliar         ###   ########.fr        #
+#    Updated: 2021/04/26 23:58:01 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL      := /bin/sh
 CC         := clang++
-CFLAGS     := -Wall -Wextra -fdiagnostics-color -g -pipe \
+CFLAGS     := -Wall -Wextra -fdiagnostics-color=auto -g -pipe \
               -march=native -O2 -flto -Wno-c++11-extensions
 INCLUDE    := -I./include
 NAME       := eval_expr
