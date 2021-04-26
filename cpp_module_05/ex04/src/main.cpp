@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 20:01:10 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 22:58:44 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 01:34:43 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,56 +30,64 @@ int			main(void)
 	catch (OfficeBlock::InternNotSetException &ex)
 	{
 		std::cout << clr_bred(ex.what()) << std::endl;
-		ob.setIntern(idiot_one);
-		try
-		{
-			ob.doBureaucracy("mutant pig termination", "Pigley");
-		}
-		catch (OfficeBlock::SignerNotSetException &ex)
-		{
-			std::cout << clr_bred(ex.what()) << std::endl;
-			ob.setSigner(bob);
-			try
-			{
-				ob.doBureaucracy("mutant pig termination", "Pigley");
-			}
-			catch (OfficeBlock::ExecutorNotSetException &ex)
-			{
-				std::cout << clr_bred(ex.what()) << std::endl << std::endl;
-				ob.setExecutor(hermes);
-				try
-				{
-					ob.doBureaucracy("mutant pig termination", "Pigley");
-				}
-				catch (OfficeBlock::SignerGradeTooLowException &ex)
-				{
-					std::cout << clr_bred(ex.what()) << std::endl << std::endl;
-					while (bob.getGrade() > 123)
-						bob.incGrade();
-					try
-					{
-						ob.doBureaucracy("mutant pig termination", "Pigley");
-					}
-					catch (OfficeBlock::ExecutorGradeTooLowException &ex)
-					{
-						std::cout << clr_bred(ex.what()) << std::endl << std::endl;
-						while (hermes.getGrade() > 37)
-							hermes.incGrade();
-						ob.doBureaucracy("mutant pig termination", "Pigley");
-						std::cout << std::endl;
-						try
-						{
-							ob.doBureaucracy("mutant pig preservation", "Pigley");
-						}
-						catch (OfficeBlock::UnknownFormException &ex)
-						{
-							std::cout << clr_bred(ex.what()) << std::endl;
-						}
-					}
-				}
-			}
-		}
 	}
+
+	ob.setIntern(idiot_one);
+	try
+	{
+		ob.doBureaucracy("mutant pig termination", "Pigley");
+	}
+	catch (OfficeBlock::SignerNotSetException &ex)
+	{
+		std::cout << clr_bred(ex.what()) << std::endl;
+	}
+
+	ob.setSigner(bob);
+	try
+	{
+		ob.doBureaucracy("mutant pig termination", "Pigley");
+	}
+	catch (OfficeBlock::ExecutorNotSetException &ex)
+	{
+		std::cout << clr_bred(ex.what()) << std::endl << std::endl;
+	}
+
+	ob.setExecutor(hermes);
+	try
+	{
+		ob.doBureaucracy("mutant pig termination", "Pigley");
+	}
+	catch (OfficeBlock::SignerGradeTooLowException &ex)
+	{
+		std::cout << clr_bred(ex.what()) << std::endl << std::endl;
+	}
+
+	while (bob.getGrade() > 123)
+		bob.incGrade();
+	try
+	{
+		ob.doBureaucracy("mutant pig termination", "Pigley");
+	}
+	catch (OfficeBlock::ExecutorGradeTooLowException &ex)
+	{
+		std::cout << clr_bred(ex.what()) << std::endl << std::endl;
+	}
+
+	while (hermes.getGrade() > 37)
+		hermes.incGrade();
+	ob.doBureaucracy("mutant pig termination", "Pigley");
+	std::cout << std::endl;
+	try
+	{
+		ob.doBureaucracy("mutant pig preservation", "Pigley");
+	}
+	catch (OfficeBlock::UnknownFormException &ex)
+	{
+		std::cout << clr_bred(ex.what()) << std::endl;
+	}
+	ob.unsetIntern();
+	ob.unsetSigner();
+	ob.unsetExecutor();
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 18:36:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 22:45:28 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 01:28:35 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ void			OfficeBlock::setSigner(Bureaucrat const &rSigner)
 void			OfficeBlock::setExecutor(Bureaucrat const &rExecutor)
 {
 	this->_pExecutor = &rExecutor;
+}
+
+void			OfficeBlock::unsetIntern(void)
+{
+	this->_pIntern = NULL;
+}
+
+void			OfficeBlock::unsetSigner(void)
+{
+	this->_pSigner = NULL;
+}
+
+void			OfficeBlock::unsetExecutor(void)
+{
+	this->_pExecutor = NULL;
 }
 
 void			OfficeBlock::doBureaucracy(std::string const &rFormName, std::string const &rFormTarget)

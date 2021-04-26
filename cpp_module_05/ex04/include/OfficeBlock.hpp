@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 18:36:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 23:53:04 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/27 01:29:02 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <exception>
+# include <cstddef>
 # include "Intern.hpp"
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"
@@ -25,6 +26,9 @@ class						OfficeBlock
 		void				setIntern(Intern const &rIntern);
 		void				setSigner(Bureaucrat const &rSigner);
 		void				setExecutor(Bureaucrat const &rExecutor);
+		void				unsetIntern(void);
+		void				unsetSigner(void);
+		void				unsetExecutor(void);
 
 		void				doBureaucracy(std::string const &rFormName, std::string const &rFormTarget)
 								throw (InternNotSetException, SignerNotSetException, ExecutorNotSetException,
