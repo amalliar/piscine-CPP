@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:07:34 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/27 00:29:05 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/28 08:19:42 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static Fixed	apply_oper(Fixed const &lhs, Fixed const &rhs, char oper)
 		return (lhs * rhs);
 	if (oper == '/')
 		return (lhs / rhs);
+	return (Fixed(0));
 }
 
 Fixed			eval_expr(std::queue<t_tok> &rRpnQueue)
