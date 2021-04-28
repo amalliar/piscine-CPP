@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:53:18 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/27 07:22:55 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/29 02:15:58 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void			print(T &rLhs, T &rRhs)
 class			Awesome
 {
 	public:
-				Awesome(void) : _n(0) {}
 				Awesome(int n) : _n(n) {}
-		Awesome	&operator=(Awesome const &rRhs) { this->_n = rRhs._n; return (*this); }
 		bool	operator==(Awesome const &rRhs) const { return (this->_n == rRhs._n); }
 		bool	operator!=(Awesome const &rRhs) const { return (this->_n != rRhs._n); }
 		bool	operator>(Awesome const &rRhs) const { return (this->_n > rRhs._n); }
