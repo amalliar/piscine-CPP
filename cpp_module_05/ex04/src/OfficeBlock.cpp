@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 18:36:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/27 01:28:35 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/04/28 06:42:38 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,16 @@ void			OfficeBlock::doBureaucracy(std::string const &rFormName, std::string cons
 	{
 		this->_pSigner->signForm(*p_form);
 		this->_pExecutor->executeForm(*p_form);
+		delete p_form;
 	}
 	catch (Bureaucrat::SignerGradeTooLowException)
 	{
+		delete p_form;
 		throw (SignerGradeTooLowException());
 	}
 	catch (Bureaucrat::ExecutorGradeTooLowException)
 	{
+		delete p_form;
 		throw (ExecutorGradeTooLowException());
 	}
 }
