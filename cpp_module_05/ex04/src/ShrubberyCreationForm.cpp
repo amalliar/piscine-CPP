@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 10:34:44 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 19:56:57 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:53:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 std::string const		&ShrubberyCreationForm::getTarget(void) const
 {
-	return (this->_target);
+	return (_target);
 }
 
 						ShrubberyCreationForm::ShrubberyCreationForm(std::string const &rTarget) :
@@ -35,14 +35,17 @@ std::string const		&ShrubberyCreationForm::getTarget(void) const
 
 ShrubberyCreationForm	&ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rRhs)
 {
-	this->_target = rRhs.getTarget();
+	if (this != &rRhs)
+	{
+		_target = rRhs.getTarget();
+	}
 	return (*this);
 }
 
 void					ShrubberyCreationForm::_exec(void) const
 {
 	std::ofstream		ofs;
-	std::string			fname = this->_target + "_shrubbery";
+	std::string			fname = _target + "_shrubbery";
 	std::string const	shrub = \
 
 	"\033[1;32m"

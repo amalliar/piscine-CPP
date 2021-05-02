@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 03:41:58 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 22:22:08 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:19:00 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class						Fixed
 {
 	public:
+
 		int					getRawBits(void) const;
 		void				setRawBits(int const raw);
 
@@ -35,6 +36,7 @@ class						Fixed
 							Fixed(int const iNum);
 							Fixed(float const fNum);
 							~Fixed(void);
+
 		Fixed				&operator=(Fixed const &rRhs);
 		bool				operator>(Fixed const &rRhs) const;
 		bool				operator<(Fixed const &rRhs) const;
@@ -52,6 +54,7 @@ class						Fixed
 		Fixed				operator--(int);
 
 	private:
+
 		int					_value;
 		static const int	_fractBits = 8;
 };

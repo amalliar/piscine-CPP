@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 09:01:15 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:47:14 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:14:37 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void			MateriaSource::learnMateria(AMateria *pAmateria)
 {
 	if (pAmateria == NULL)
 		return ;
-	if (this->_slots[this->_idx_free] != NULL)
-		delete this->_slots[this->_idx_free];
-	this->_slots[this->_idx_free] = pAmateria->clone();
-	this->_idx_free = (this->_idx_free + 1) % 4;
+	if (_slots[_idx_free] != NULL)
+		delete _slots[_idx_free];
+	_slots[_idx_free] = pAmateria->clone();
+	_idx_free = (_idx_free + 1) % 4;
 }
 
 AMateria		*MateriaSource::createMateria(std::string const &rType)
 {
 	for (int i = 0; i < 4; ++i)
-		if (this->_slots[i] != NULL)
+		if (_slots[i] != NULL)
 		{
-			if (!this->_slots[i]->getType().compare(rType))
-				return (this->_slots[i]->clone());
+			if (!_slots[i]->getType().compare(rType))
+				return (_slots[i]->clone());
 		}
 		else
 			return (NULL);
@@ -39,54 +39,55 @@ AMateria const	*MateriaSource::getAMateria(int idx) const
 {
 	if (idx < 0 || idx > 3)
 		return (NULL);
-	return (this->_slots[idx]);
+	return (_slots[idx]);
 }
 
 				MateriaSource::MateriaSource(void) :
 				_idx_free(0)
 {
 	for (int i = 0; i < 4; ++i)
-		this->_slots[i] = NULL;
+		_slots[i] = NULL;
 }
 
 				MateriaSource::MateriaSource(MateriaSource const &rSrc) :
 				_idx_free(0)
 {
 	for (int i = 0; i < 4; ++i)
-		this->_slots[i] = NULL;
+		_slots[i] = NULL;
 	*this = rSrc;
 }
 
 				MateriaSource::~MateriaSource(void)
 {
-	this->_clearSlots();
+	_clearSlots();
 }
 
 MateriaSource	&MateriaSource::operator=(MateriaSource const &rRhs)
 {
 	AMateria const		*pAmateria;
 
-	if (this == &rRhs)
-		return (*this);
-	this->_clearSlots();
-	for (int i = 0; i < 4; ++i)
-		if ((pAmateria = rRhs.getAMateria(i)))
-		{
-			this->_slots[i] = pAmateria->clone();
-			this->_idx_free = (i + 1) % 4;
-		}
-		else
-			return (*this);
+	if (this != &rRhs)
+	{
+		_clearSlots();
+		for (int i = 0; i < 4; ++i)
+			if ((pAmateria = rRhs.getAMateria(i)))
+			{
+				_slots[i] = pAmateria->clone();
+				_idx_free = (i + 1) % 4;
+			}
+			else
+				return (*this);
+	}
 	return (*this);
 }
 
 void			MateriaSource::_clearSlots(void)
 {
 	for (int i = 0; i < 4; ++i)
-		if (this->_slots[i] != NULL)
+		if (_slots[i] != NULL)
 		{
-			delete this->_slots[i];
-			this->_slots[i] = NULL;
+			delete _slots[i];
+			_slots[i] = NULL;
 		}
-	this->_idx_free = 0;
+	_idx_free = 0;
 }

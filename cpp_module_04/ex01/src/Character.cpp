@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 15:42:20 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:23:09 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:25:18 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,41 @@
 
 std::string const		&Character::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						Character::getAP(void) const
 {
-	return (this->_ap);
+	return (_ap);
 }
 
 AWeapon					*Character::getWeapon(void) const
 {
-	return (this->_pWeapon);
+	return (_pWeapon);
 }
 
 void					Character::equip(AWeapon *pWeapon)
 {
-	this->_pWeapon = pWeapon;
+	_pWeapon = pWeapon;
 }
 
 void					Character::attack(Enemy *pEnemy)
 {
-	if (!this->_pWeapon || !pEnemy || this->_ap < this->_pWeapon->getAPCost())
+	if (!_pWeapon || !pEnemy || _ap < _pWeapon->getAPCost())
 		return ;
-	std::cout << this->_name << " attacks " << pEnemy->getType() << " with a " << \
-		this->_pWeapon->getName() << std::endl;
-	this->_pWeapon->attack();
-	this->_ap -= this->_pWeapon->getAPCost();
-	pEnemy->takeDamage(this->_pWeapon->getDamage());
+	std::cout << _name << " attacks " << pEnemy->getType() << " with a " << \
+		_pWeapon->getName() << std::endl;
+	_pWeapon->attack();
+	_ap -= _pWeapon->getAPCost();
+	pEnemy->takeDamage(_pWeapon->getDamage());
 	if (pEnemy->getHP() <= 0)
 		delete pEnemy;
 }
 
 void					Character::recoverAP(void)
 {
-	if ((this->_ap += 10) > 40)
-		this->_ap = 40;
+	if ((_ap += 10) > 40)
+		_ap = 40;
 }
 
 						Character::Character(std::string const &rName) :
@@ -62,11 +62,14 @@ void					Character::recoverAP(void)
 {
 }
 
-Character				&Character::operator=(Character const &rSrc)
+Character				&Character::operator=(Character const &rRhs)
 {
-	this->_name = rSrc._name;
-	this->_ap = rSrc._ap;
-	this->_pWeapon = rSrc._pWeapon;
+	if (this != &rRhs)
+	{
+		_name = rRhs._name;
+		_ap = rRhs._ap;
+		_pWeapon = rRhs._pWeapon;
+	}
 	return (*this);
 }
 

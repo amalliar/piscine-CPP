@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:17:11 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:59:36 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:39:30 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,32 @@ int					NinjaTrap::ninjaShoebox(ClapTrap &rTarget)
 	size_t				n_voices = sizeof(__ninjaShoeboxVoiceLines) / sizeof(std::string);
 	std::string			msg;
 
-	if (this->_hitPoints <= 0)
+	if (_hitPoints <= 0)
 		return (1);
-	if (this->_energyPoints < 40)
+	if (_energyPoints < 40)
 	{
 		_printInfoMessage("Not enough energy points to execute ninjaShoebox");
 		return (1);
 	}
-	if ((this->_energyPoints -= 40) < 0)
-		this->_energyPoints = 0;
+	if ((_energyPoints -= 40) < 0)
+		_energyPoints = 0;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes ninjaShoebox on " + rTarget.getName() + "!";
-	this->_printInfoMessage(msg);
-	if (this->_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(this->_name))
+	msg += " " + _name + " executes ninjaShoebox on " + rTarget.getName() + "!";
+	_printInfoMessage(msg);
+	if (_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(_name))
 	{
-		this->_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
-		rTarget.setName(this->_name);
+		_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
+		rTarget.setName(_name);
 	}
-	else if (this->_name.find("'s Army Bot") == std::string::npos && \
-		rTarget.getName().compare(this->_name + "'s Army Bot"))
+	else if (_name.find("'s Army Bot") == std::string::npos && \
+		rTarget.getName().compare(_name + "'s Army Bot"))
 	{
-		this->_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
-		rTarget.setName(this->_name + "'s Army Bot");
+		_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
+		rTarget.setName(_name + "'s Army Bot");
 	}
-	rTarget.setMsgColor(this->_msgColor);
+	rTarget.setMsgColor(_msgColor);
 	rTarget.setLevel(rTarget.getLevel() + 1);
-	++this->_level;
+	++_level;
 	rTarget.beRepaired(rTarget.getMaxHitPoints());
 	rTarget.setEnergyPoints(rTarget.getMaxEnergyPoints());
 	return (0);
@@ -119,21 +119,21 @@ int					NinjaTrap::ninjaShoebox(FragTrap &rTarget)
 {
 	std::string			msg;
 
-	if (this->_hitPoints <= 0)
+	if (_hitPoints <= 0)
 		return (1);
-	if (this->_energyPoints < 40)
+	if (_energyPoints < 40)
 	{
 		_printInfoMessage("Not enough energy points to execute ninjaShoebox");
 		return (1);
 	}
-	if ((this->_energyPoints -= 40) < 0)
-		this->_energyPoints = 0;
+	if ((_energyPoints -= 40) < 0)
+		_energyPoints = 0;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes ninjaShoebox on " + rTarget.getName() + "!";
-	this->_printInfoMessage(msg);
-	rTarget.takeDamage(this->_meleeAtkDamage * 3);
-	if ((this->_energyPoints += rTarget.getEnergyPoints()) > this->_maxEnergyPoints)
-		this->_energyPoints = this->_maxEnergyPoints;
+	msg += " " + _name + " executes ninjaShoebox on " + rTarget.getName() + "!";
+	_printInfoMessage(msg);
+	rTarget.takeDamage(_meleeAtkDamage * 3);
+	if ((_energyPoints += rTarget.getEnergyPoints()) > _maxEnergyPoints)
+		_energyPoints = _maxEnergyPoints;
 	rTarget.setEnergyPoints(0);
 	return (0);
 }
@@ -143,34 +143,34 @@ int					NinjaTrap::ninjaShoebox(ScavTrap &rTarget)
 	size_t				n_voices = sizeof(__ninjaShoeboxVoiceLines) / sizeof(std::string);
 	std::string			msg;
 
-	if (this->_hitPoints <= 0)
+	if (_hitPoints <= 0)
 		return (1);
-	if (this->_energyPoints < 40)
+	if (_energyPoints < 40)
 	{
 		_printInfoMessage("Not enough energy points to execute ninjaShoebox");
 		return (1);
 	}
-	if ((this->_energyPoints -= 40) < 0)
-		this->_energyPoints = 0;
+	if ((_energyPoints -= 40) < 0)
+		_energyPoints = 0;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes ninjaShoebox on " + rTarget.getName() + "!";
-	this->_printInfoMessage(msg);
-	if (this->_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(this->_name))
+	msg += " " + _name + " executes ninjaShoebox on " + rTarget.getName() + "!";
+	_printInfoMessage(msg);
+	if (_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(_name))
 	{
-		this->_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
+		_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
 		rTarget.challengeNewcomer(rTarget.getName());
-		rTarget.setName(this->_name);
+		rTarget.setName(_name);
 	}
-	else if (this->_name.find("'s Army Bot") == std::string::npos && \
-		rTarget.getName().compare(this->_name + "'s Army Bot"))
+	else if (_name.find("'s Army Bot") == std::string::npos && \
+		rTarget.getName().compare(_name + "'s Army Bot"))
 	{
-		this->_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
+		_printVoiceMessage(__ninjaShoeboxVoiceLines[std::rand() % n_voices]);
 		rTarget.challengeNewcomer(rTarget.getName());
-		rTarget.setName(this->_name + "'s Army Bot");
+		rTarget.setName(_name + "'s Army Bot");
 	}
-	rTarget.setMsgColor(this->_msgColor);
+	rTarget.setMsgColor(_msgColor);
 	rTarget.setLevel(rTarget.getLevel() + 1);
-	++this->_level;
+	++_level;
 	rTarget.beRepaired(rTarget.getMaxHitPoints());
 	rTarget.setEnergyPoints(rTarget.getMaxEnergyPoints());
 	return (0);
@@ -180,40 +180,40 @@ int					NinjaTrap::ninjaShoebox(NinjaTrap &rTarget)
 {
 	std::string			msg;
 
-	if (this->_hitPoints <= 0)
+	if (_hitPoints <= 0)
 		return (1);
-	if (this->_energyPoints < 40)
+	if (_energyPoints < 40)
 	{
 		_printInfoMessage("Not enough energy points to execute ninjaShoebox");
 		return (1);
 	}
-	if ((this->_energyPoints -= std::rand() % 40 + 1) < 0)
-		this->_energyPoints = 0;
+	if ((_energyPoints -= std::rand() % 40 + 1) < 0)
+		_energyPoints = 0;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes ninjaShoebox on " + rTarget.getName() + "!";
-	this->_printInfoMessage(msg);
-	if (this->_name.substr(0, this->_name.find("'s Army Bot")).compare(rTarget.getName()))
+	msg += " " + _name + " executes ninjaShoebox on " + rTarget.getName() + "!";
+	_printInfoMessage(msg);
+	if (_name.substr(0, _name.find("'s Army Bot")).compare(rTarget.getName()))
 	{
-		if (this->_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(this->_name))
+		if (_name.find("'s Army Bot") != std::string::npos && rTarget.getName().compare(_name))
 		{
 			if (!rTarget.ninjaShoebox(*this))
 				return (0);
-			this->_printVoiceMessage("Assimilating rogue unit.");
-			rTarget.setName(this->_name);
-			rTarget.setMsgColor(this->_msgColor);
+			_printVoiceMessage("Assimilating rogue unit.");
+			rTarget.setName(_name);
+			rTarget.setMsgColor(_msgColor);
 		}
-		else if (this->_name.find("'s Army Bot") == std::string::npos && \
-			rTarget.getName().compare(this->_name + "'s Army Bot"))
+		else if (_name.find("'s Army Bot") == std::string::npos && \
+			rTarget.getName().compare(_name + "'s Army Bot"))
 		{
 			if (!rTarget.ninjaShoebox(*this))
 				return (0);
-			this->_printVoiceMessage("Assimilating rogue unit.");
-			rTarget.setName(this->_name + "'s Army Bot");
-			rTarget.setMsgColor(this->_msgColor);
+			_printVoiceMessage("Assimilating rogue unit.");
+			rTarget.setName(_name + "'s Army Bot");
+			rTarget.setMsgColor(_msgColor);
 		}
 	}
 	rTarget.setLevel(rTarget.getLevel() + 1);
-	++this->_level;
+	++_level;
 	rTarget.beRepaired(rTarget.getMaxHitPoints());
 	rTarget.setEnergyPoints(rTarget.getMaxEnergyPoints());
 	return (0);
@@ -225,41 +225,41 @@ int					NinjaTrap::ninjaShoebox(NinjaTrap &rTarget)
 	size_t			n_voices = sizeof(__constructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_msgColor = "\033[0;31m";
-	this->_hitPoints = 60;
-	this->_maxHitPoints = 60;
-	this->_energyPoints = 120;
-	this->_maxEnergyPoints = 120;
-	this->_meleeAtkDamage = 60;
-	this->_rangedAtkDamage = 5;
-	this->_armorDamageReduction = 0;
-	this->_rangedAttackVoiceLines = __rangedAttackVoiceLines;
-	this->_meleeAttackVoiceLines = __meleeAttackVoiceLines;
-	this->_takeDamageVoiceLines = __takeDamageVoiceLines;
-	this->_beRepairedVoiceLines = __beRepairedVoiceLines;
-	this->_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
-	this->_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
-	this->_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
-	this->_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
+	_msgColor = "\033[0;31m";
+	_hitPoints = 60;
+	_maxHitPoints = 60;
+	_energyPoints = 120;
+	_maxEnergyPoints = 120;
+	_meleeAtkDamage = 60;
+	_rangedAtkDamage = 5;
+	_armorDamageReduction = 0;
+	_rangedAttackVoiceLines = __rangedAttackVoiceLines;
+	_meleeAttackVoiceLines = __meleeAttackVoiceLines;
+	_takeDamageVoiceLines = __takeDamageVoiceLines;
+	_beRepairedVoiceLines = __beRepairedVoiceLines;
+	_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
+	_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
+	_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
+	_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
 
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been created.";
-	this->_printDebugMessage(dmsg);
-	this->_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
+	_printDebugMessage(dmsg);
+	_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
 }
 
 					NinjaTrap::NinjaTrap(NinjaTrap const &rSrc)
 {
 	*this = rSrc;
-	this->_rangedAttackVoiceLines = __rangedAttackVoiceLines;
-	this->_meleeAttackVoiceLines = __meleeAttackVoiceLines;
-	this->_takeDamageVoiceLines = __takeDamageVoiceLines;
-	this->_beRepairedVoiceLines = __beRepairedVoiceLines;
-	this->_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
-	this->_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
-	this->_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
-	this->_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
+	_rangedAttackVoiceLines = __rangedAttackVoiceLines;
+	_meleeAttackVoiceLines = __meleeAttackVoiceLines;
+	_takeDamageVoiceLines = __takeDamageVoiceLines;
+	_beRepairedVoiceLines = __beRepairedVoiceLines;
+	_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
+	_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
+	_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
+	_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
 }
 
 					NinjaTrap::~NinjaTrap(void)
@@ -267,25 +267,28 @@ int					NinjaTrap::ninjaShoebox(NinjaTrap &rTarget)
 	size_t			n_voices = sizeof(__destructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been destroyed.";
-	this->_printDebugMessage(dmsg);
+	_printDebugMessage(dmsg);
 }
 
 NinjaTrap			&NinjaTrap::operator=(NinjaTrap const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_msgColor = rRhs.getMsgColor();
-	this->_level = rRhs.getLevel();
-	this->_hitPoints = rRhs.getHitPoints();
-	this->_maxHitPoints = rRhs.getMaxHitPoints();
-	this->_energyPoints = rRhs.getEnergyPoints();
-	this->_maxEnergyPoints = rRhs.getMaxEnergyPoints();
-	this->_meleeAtkDamage = rRhs.getMeleeAtkDamage();
-	this->_rangedAtkDamage = rRhs.getRangedAtkDamage();
-	this->_armorDamageReduction = rRhs.getArmorDamageReduction();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_msgColor = rRhs.getMsgColor();
+		_level = rRhs.getLevel();
+		_hitPoints = rRhs.getHitPoints();
+		_maxHitPoints = rRhs.getMaxHitPoints();
+		_energyPoints = rRhs.getEnergyPoints();
+		_maxEnergyPoints = rRhs.getMaxEnergyPoints();
+		_meleeAtkDamage = rRhs.getMeleeAtkDamage();
+		_rangedAtkDamage = rRhs.getRangedAtkDamage();
+		_armorDamageReduction = rRhs.getArmorDamageReduction();
+	}
 	return (*this);
 }
 

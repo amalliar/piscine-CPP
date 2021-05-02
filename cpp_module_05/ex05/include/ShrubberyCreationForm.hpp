@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 10:24:57 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 17:49:30 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:06:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 class						ShrubberyCreationForm : public AForm
 {
 	public:
+
 		std::string const	&getTarget(void) const;
 
 							ShrubberyCreationForm(std::string const &rTarget);
 							ShrubberyCreationForm(ShrubberyCreationForm const &rSrc);
 							~ShrubberyCreationForm(void);
+
 	ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &rRhs);
 
 	protected:
+
 		void				_exec(void) const;
 
 	private:
+
 		std::string			_target;
 
 							ShrubberyCreationForm(void);

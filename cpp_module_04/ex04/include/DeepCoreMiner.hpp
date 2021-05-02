@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:21:56 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 15:58:15 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:17:33 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 class					DeepCoreMiner : public IMiningLaser
 {
 	public:
+
 		void			mine(IAsteroid *pAsteroid);
 
 						DeepCoreMiner(void);
 						DeepCoreMiner(DeepCoreMiner const &rSrc);
 						~DeepCoreMiner(void);
+
 		DeepCoreMiner	&operator=(DeepCoreMiner const &rRhs);
 };
 

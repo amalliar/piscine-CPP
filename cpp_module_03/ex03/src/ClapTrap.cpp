@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:17:11 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:50:16 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:27:28 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,57 +44,57 @@ std::string const	ClapTrap::__beRepairedVoiceLines[] =
 
 std::string const	&ClapTrap::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 std::string const	&ClapTrap::getMsgColor(void) const
 {
-	return (this->_msgColor);
+	return (_msgColor);
 }
 
 int					ClapTrap::getLevel(void) const
 {
-	return (this->_level);
+	return (_level);
 }
 
 int					ClapTrap::getHitPoints(void) const
 {
-	return (this->_hitPoints);
+	return (_hitPoints);
 }
 
 int					ClapTrap::getMaxHitPoints(void) const
 {
-	return (this->_maxHitPoints);
+	return (_maxHitPoints);
 }
 
 int					ClapTrap::getEnergyPoints(void) const
 {
-	return (this->_energyPoints);
+	return (_energyPoints);
 }
 
 int					ClapTrap::getMaxEnergyPoints(void) const
 {
-	return (this->_maxEnergyPoints);
+	return (_maxEnergyPoints);
 }
 
 int					ClapTrap::getMeleeAtkDamage(void) const
 {
-	return (this->_meleeAtkDamage);
+	return (_meleeAtkDamage);
 }
 
 int					ClapTrap::getRangedAtkDamage(void) const
 {
-	return (this->_rangedAtkDamage);
+	return (_rangedAtkDamage);
 }
 
 int					ClapTrap::getArmorDamageReduction(void) const
 {
-	return (this->_armorDamageReduction);
+	return (_armorDamageReduction);
 }
 
 int					ClapTrap::setName(std::string const &rName)
 {
-	this->_name = rName;
+	_name = rName;
 	return (0);
 }
 
@@ -125,7 +125,7 @@ int					ClapTrap::setMsgColor(std::string const &rMsgColor)
 	for (size_t i = 0; i < n_colors; ++i)
 		if (!rMsgColor.compare(colors[i]))
 		{
-			this->_msgColor = rMsgColor;
+			_msgColor = rMsgColor;
 			return (0);
 		}
 	return (1);
@@ -135,15 +135,15 @@ int					ClapTrap::setLevel(int level)
 {
 	if (level < 0)
 		return (1);
-	this->_level = level;
+	_level = level;
 	return (0);
 }
 
 int					ClapTrap::setHitPoints(int hitPoints)
 {
-	if (hitPoints < 0 || hitPoints > this->_maxHitPoints)
+	if (hitPoints < 0 || hitPoints > _maxHitPoints)
 		return (1);
-	this->_hitPoints = hitPoints;
+	_hitPoints = hitPoints;
 	return (0);
 }
 
@@ -151,15 +151,15 @@ int					ClapTrap::setMaxHitPoints(int maxHitPoints)
 {
 	if (maxHitPoints < 0)
 		return (1);
-	this->_maxHitPoints = maxHitPoints;
+	_maxHitPoints = maxHitPoints;
 	return (0);
 }
 
 int					ClapTrap::setEnergyPoints(int energyPoints)
 {
-	if (energyPoints < 0 || energyPoints > this->_maxEnergyPoints)
+	if (energyPoints < 0 || energyPoints > _maxEnergyPoints)
 		return (1);
-	this->_energyPoints = energyPoints;
+	_energyPoints = energyPoints;
 	return (0);
 }
 
@@ -167,7 +167,7 @@ int					ClapTrap::setMeleeAtkDamage(int meleeAtkDamage)
 {
 	if (meleeAtkDamage < 0)
 		return (1);
-	this->_meleeAtkDamage = meleeAtkDamage;
+	_meleeAtkDamage = meleeAtkDamage;
 	return (0);
 }
 
@@ -175,7 +175,7 @@ int					ClapTrap::setRangedAtkDamage(int rangedAtkDamage)
 {
 	if (rangedAtkDamage < 0)
 		return (1);
-	this->_rangedAtkDamage = rangedAtkDamage;
+	_rangedAtkDamage = rangedAtkDamage;
 	return (0);
 }
 
@@ -183,7 +183,7 @@ int					ClapTrap::setArmorDamageReduction(int armorDamageReduction)
 {
 	if (armorDamageReduction < 0)
 		return (1);
-	this->_armorDamageReduction = armorDamageReduction;
+	_armorDamageReduction = armorDamageReduction;
 	return (0);
 }
 
@@ -191,14 +191,14 @@ int					ClapTrap::rangedAttack(std::string const &rTarget)
 {
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " attacks " + rTarget + " at range causing " + \
-		std::to_string(this->_rangedAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(this->_rangedAttackVoiceLines[std::rand() % \
-		this->_rangedAttackNumVoices]);
+	msg += " " + _name + " attacks " + rTarget + " at range causing " + \
+		std::to_string(_rangedAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(_rangedAttackVoiceLines[std::rand() % \
+		_rangedAttackNumVoices]);
 	return (0);
 }
 
@@ -206,14 +206,14 @@ int					ClapTrap::meleeAttack(std::string const &rTarget)
 {
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " punches " + rTarget + " causing " + \
-		std::to_string(this->_meleeAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(this->_meleeAttackVoiceLines[std::rand() % \
-		this->_meleeAttackNumVoices]);
+	msg += " " + _name + " punches " + rTarget + " causing " + \
+		std::to_string(_meleeAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(_meleeAttackVoiceLines[std::rand() % \
+		_meleeAttackNumVoices]);
 	return (0);
 }
 
@@ -221,22 +221,22 @@ int					ClapTrap::takeDamage(unsigned int amount)
 {
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	amount -= this->_armorDamageReduction;
+	amount -= _armorDamageReduction;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " is hit for " + std::to_string(amount) + " points of damage!";
-	this->_printInfoMessage(msg);
-	if ((this->_hitPoints -= amount) <= 0)
+	msg += " " + _name + " is hit for " + std::to_string(amount) + " points of damage!";
+	_printInfoMessage(msg);
+	if ((_hitPoints -= amount) <= 0)
 	{
-		this->_hitPoints = 0;
+		_hitPoints = 0;
 		msg = typeid(*this).name();
-		msg += " " + this->_name + " has been knocked out.";
-		this->_printInfoMessage(msg);
+		msg += " " + _name + " has been knocked out.";
+		_printInfoMessage(msg);
 		return (0);
 	}
-	this->_printVoiceMessage(this->_takeDamageVoiceLines[std::rand() % \
-		this->_takeDamageNumVoices]);
+	_printVoiceMessage(_takeDamageVoiceLines[std::rand() % \
+		_takeDamageNumVoices]);
 	return (0);
 }
 
@@ -244,18 +244,18 @@ int					ClapTrap::beRepaired(unsigned int amount)
 {
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	if ((this->_hitPoints += amount) > this->_maxHitPoints)
+	if ((_hitPoints += amount) > _maxHitPoints)
 	{
-		amount -= this->_hitPoints - this->_maxHitPoints;
-		this->_hitPoints = this->_maxHitPoints;
+		amount -= _hitPoints - _maxHitPoints;
+		_hitPoints = _maxHitPoints;
 	}
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " has been repaired for " + std::to_string(amount) + " hit points.";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(this->_beRepairedVoiceLines[std::rand() % \
-		this->_beRepairedNumVoices]);
+	msg += " " + _name + " has been repaired for " + std::to_string(amount) + " hit points.";
+	_printInfoMessage(msg);
+	_printVoiceMessage(_beRepairedVoiceLines[std::rand() % \
+		_beRepairedNumVoices]);
 	return (0);
 }
 
@@ -286,21 +286,21 @@ int					ClapTrap::beRepaired(unsigned int amount)
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been created.";
-	this->_printDebugMessage(dmsg);
-	this->_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
+	_printDebugMessage(dmsg);
+	_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
 }
 
 					ClapTrap::ClapTrap(ClapTrap const &rSrc)
 {
 	*this = rSrc;
-	this->_rangedAttackVoiceLines = __rangedAttackVoiceLines;
-	this->_meleeAttackVoiceLines = __meleeAttackVoiceLines;
-	this->_takeDamageVoiceLines = __takeDamageVoiceLines;
-	this->_beRepairedVoiceLines = __beRepairedVoiceLines;
-	this->_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
-	this->_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
-	this->_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
-	this->_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
+	_rangedAttackVoiceLines = __rangedAttackVoiceLines;
+	_meleeAttackVoiceLines = __meleeAttackVoiceLines;
+	_takeDamageVoiceLines = __takeDamageVoiceLines;
+	_beRepairedVoiceLines = __beRepairedVoiceLines;
+	_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
+	_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
+	_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
+	_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
 }
 
 					ClapTrap::~ClapTrap(void)
@@ -308,25 +308,28 @@ int					ClapTrap::beRepaired(unsigned int amount)
 	size_t			n_voices = sizeof(ClapTrap::__destructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been destroyed.";
-	this->_printDebugMessage(dmsg);
+	_printDebugMessage(dmsg);
 }
 
 ClapTrap			&ClapTrap::operator=(ClapTrap const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_msgColor = rRhs.getMsgColor();
-	this->_level = rRhs.getLevel();
-	this->_hitPoints = rRhs.getHitPoints();
-	this->_maxHitPoints = rRhs.getMaxHitPoints();
-	this->_energyPoints = rRhs.getEnergyPoints();
-	this->_maxEnergyPoints = rRhs.getMaxEnergyPoints();
-	this->_meleeAtkDamage = rRhs.getMeleeAtkDamage();
-	this->_rangedAtkDamage = rRhs.getRangedAtkDamage();
-	this->_armorDamageReduction = rRhs.getArmorDamageReduction();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_msgColor = rRhs.getMsgColor();
+		_level = rRhs.getLevel();
+		_hitPoints = rRhs.getHitPoints();
+		_maxHitPoints = rRhs.getMaxHitPoints();
+		_energyPoints = rRhs.getEnergyPoints();
+		_maxEnergyPoints = rRhs.getMaxEnergyPoints();
+		_meleeAtkDamage = rRhs.getMeleeAtkDamage();
+		_rangedAtkDamage = rRhs.getRangedAtkDamage();
+		_armorDamageReduction = rRhs.getArmorDamageReduction();
+	}
 	return (*this);
 }
 
@@ -334,7 +337,7 @@ void				ClapTrap::_printVoiceMessage(std::string const &rMsg) const
 {
 	std::string const	noc = "\033[0m";
 
-	std::cout << this->_msgColor << this->_name << ": " << rMsg << noc << std::endl;
+	std::cout << _msgColor << _name << ": " << rMsg << noc << std::endl;
 }
 
 void				ClapTrap::_printInfoMessage(std::string const &rMsg) const

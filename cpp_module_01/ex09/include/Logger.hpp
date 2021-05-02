@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:24:04 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 19:50:25 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:15:00 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct				s_action
 class						Logger
 {
 	public:
+
 		static size_t const	numActs = 2;
 		static t_action		actMap[numActs];
 
@@ -37,9 +38,11 @@ class						Logger
 							Logger(std::string const &rOfile);
 							Logger(Logger const &rSrc);
 							~Logger(void);
+
 		Logger				&operator=(Logger const &rRhs);
 
 	private:
+
 		std::string	const	_oFile;
 
 		std::string			_makeLogEntry(std::string const &rMsg) const;

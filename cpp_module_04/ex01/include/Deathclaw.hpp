@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:48:55 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:17:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:26:15 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 class					Deathclaw : public Enemy
 {
 	public:
+
 		virtual void	takeDamage(int damage);
 
 						Deathclaw(void);
 						Deathclaw(Deathclaw const &rSrc);
 		virtual			~Deathclaw(void);
+
 		Deathclaw		&operator=(Deathclaw const &rRhs);
 };
 

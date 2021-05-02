@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 20:59:03 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 01:00:11 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:03:44 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Brain const		&Human::getBrain(void) const
 {
-	return (this->_brain);
+	return (_brain);
 }
 
 std::string		Human::identify(void) const
 {
-	return (this->_brain.identify());
+	return (_brain.identify());
 }
 
 				Human::Human(void)

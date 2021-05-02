@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 10:24:57 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 20:45:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:47:55 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 class								MutantPigTerminationForm : public AForm
 {
 	public:
+
 		std::string const			&getTarget(void) const;
 
 									MutantPigTerminationForm(std::string const &rTarget);
 									MutantPigTerminationForm(MutantPigTerminationForm const &rSrc);
 									~MutantPigTerminationForm(void);
+
 		MutantPigTerminationForm	&operator=(MutantPigTerminationForm const &rRhs);
 
 	protected:
+
 		void						_exec(void) const;
 
 	private:
+
 		std::string					_target;
 
 									MutantPigTerminationForm(void);

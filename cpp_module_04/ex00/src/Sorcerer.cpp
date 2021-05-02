@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:20:09 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:25:49 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:20:45 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 std::string const	&Sorcerer::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 std::string const	&Sorcerer::getTitle(void) const
 {
-	return (this->_title);
+	return (_title);
 }
 
 void				Sorcerer::polymorph(Victim const &rVictim) const
@@ -31,25 +31,28 @@ void				Sorcerer::polymorph(Victim const &rVictim) const
 					_name(rName),
 					_title(rTitle)
 {
-	std::cout << this->_name << ", " << this->_title << ", is born!" << std::endl;
+	std::cout << _name << ", " << _title << ", is born!" << std::endl;
 }
 
 					Sorcerer::Sorcerer(Sorcerer const &rSrc)
 {
 	*this = rSrc;
-	std::cout << this->_name << ", " << this->_title << ", is born!" << std::endl;
+	std::cout << _name << ", " << _title << ", is born!" << std::endl;
 }
 
 					Sorcerer::~Sorcerer(void)
 {
-	std::cout << this->_name << ", " << this->_title << ", is dead. "
+	std::cout << _name << ", " << _title << ", is dead. "
 		"Consequences will never be the same!" << std::endl;
 }
 
 Sorcerer			&Sorcerer::operator=(Sorcerer const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_title = rRhs.getTitle();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_title = rRhs.getTitle();
+	}
 	return (*this);
 }
 

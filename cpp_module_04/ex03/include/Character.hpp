@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:23:24 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:38:59 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:11:49 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class						Character : public ICharacter
 {
 	public:
+
 		std::string const	&getName(void) const;
 		AMateria const		*getAMateria(int idx) const;
 
@@ -30,9 +31,11 @@ class						Character : public ICharacter
 							Character(std::string const &rName);
 							Character(Character const &rSrc);
 							~Character(void);
+
 		Character			&operator=(Character const &rRhs);
 
 	protected:
+
 		std::string			_name;
 		AMateria			*_slots[4];
 

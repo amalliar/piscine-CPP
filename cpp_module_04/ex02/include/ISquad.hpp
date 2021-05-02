@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 10:11:28 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:26:58 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:31:08 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class							ISquad
 {
 	public:
+
 		virtual					~ISquad() {}
 		virtual int				getCount() const = 0;
 		virtual ISpaceMarine	*getUnit(int) const = 0;

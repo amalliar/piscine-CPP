@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:09:26 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 23:42:04 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:54:33 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ AForm			*Intern::makeMutantPigTerminationForm(std::string const &rTarget) const
 
 				Intern::Intern(Intern const &rSrc)
 {
-	*this = rSrc;
+	static_cast<void>(rSrc);
 }
 
 				Intern::~Intern(void)

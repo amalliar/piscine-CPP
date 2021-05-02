@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:54:04 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:29:25 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,21 @@
 class								ScavTrap : public ClapTrap
 {
 	public:
+
 		int							challengeNewcomer(std::string const &rTarget);
 
 									ScavTrap(std::string const &rName);
 									ScavTrap(ScavTrap const &rSrc);
 									~ScavTrap(void);
+
 		ScavTrap					&operator=(ScavTrap const &rRhs);
 
 	protected:
+
 									ScavTrap(void);
 
 	private:
+
 		static std::string const	__constructorVoiceLines[];
 		static std::string const	__destructorVoiceLines[];
 		static std::string const	__rangedAttackVoiceLines[];

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:42:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:25:22 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 class								ScavTrap
 {
 	public:
+
 		std::string const			&getName(void) const;
 		std::string	const			&getMsgColor(void) const;
 		int							getLevel(void) const;
@@ -55,9 +56,11 @@ class								ScavTrap
 									ScavTrap(std::string const &rName);
 									ScavTrap(ScavTrap const &rSrc);
 									~ScavTrap(void);
+
 		ScavTrap					&operator=(ScavTrap const &rRhs);
 
 	private:
+
 		std::string					_name;
 		std::string 				_msgColor;
 		int							_level;

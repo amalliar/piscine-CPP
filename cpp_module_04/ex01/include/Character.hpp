@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 14:50:06 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:13:25 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:25:40 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 class						Character
 {
 	public:
+
 		std::string const	&getName(void) const;
 		int					getAP(void) const;
 		AWeapon				*getWeapon(void) const;
@@ -32,9 +33,11 @@ class						Character
 							Character(std::string const &rName);
 							Character(Character const &rSrc);
 		virtual				~Character(void);
-		Character			&operator=(Character const &rSrc);
+
+		Character			&operator=(Character const &rRhs);
 
 	protected:
+
 		std::string			_name;
 		int					_ap;
 		AWeapon				*_pWeapon;

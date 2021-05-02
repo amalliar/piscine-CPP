@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 10:29:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:28:38 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:31:35 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_list
 class					Squad : public ISquad
 {
 	public:
+
 		int				getCount(void) const;
 		ISpaceMarine	*getUnit(int idx) const;
 		int				push(ISpaceMarine *pSpMarine);
@@ -33,9 +34,11 @@ class					Squad : public ISquad
 						Squad(void);
 						Squad(Squad const &rSrc);
 						~Squad(void);
+
 		Squad			&operator=(Squad const &rRhs);
 
 	protected:
+
 		int				_count;
 		t_list			*_pBeginList;
 

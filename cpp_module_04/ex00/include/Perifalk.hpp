@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 18:25:40 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:21:27 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:17:22 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@
 class						Perifalk : public Victim
 {
 	public:
+
 		virtual void		getPolymorphed(void) const;
 
 							Perifalk(std::string const &rName);
 							Perifalk(Perifalk const &rSrc);
 		virtual				~Perifalk(void);
+
 		Perifalk			&operator=(Perifalk const &rRhs);
 
 	protected:
+
 							Perifalk(void);
 };
 

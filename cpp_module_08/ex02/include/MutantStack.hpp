@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 20:03:09 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/01 08:01:25 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 13:45:54 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ template <typename T>
 class							MutantStack : public std::stack<T, std::deque<T> >
 {
 	public:
+
 								MutantStack(void);
 								MutantStack(MutantStack const &rSrc);
 								~MutantStack(void);
+
 		MutantStack				&operator=(MutantStack const &rRhs);
 
 		typedef typename std::deque<T>::iterator				iterator;
@@ -60,7 +62,11 @@ template <typename T>
 template <typename T>
 MutantStack<T>										&MutantStack<T>::operator=(MutantStack const &rRhs)
 {
-	static_cast< std::stack<T> >(*this) = static_cast< std::stack<T> >(rRhs);
+	if (this != &rRhs)
+	{
+		static_cast< std::stack<T> >(*this) = static_cast< std::stack<T> >(rRhs);
+	}
+	return (*this);
 }
 
 template <typename T>

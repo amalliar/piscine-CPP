@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:09:45 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:41:52 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 class								NinjaTrap : public virtual ClapTrap
 {
 	public:
+
 		int							ninjaShoebox(ClapTrap &rTarget);
 		int							ninjaShoebox(FragTrap &rTarget);
 		int							ninjaShoebox(ScavTrap &rTarget);
@@ -33,9 +34,11 @@ class								NinjaTrap : public virtual ClapTrap
 									NinjaTrap(std::string const &rName);
 									NinjaTrap(NinjaTrap const &rSrc);
 									~NinjaTrap(void);
+
 		NinjaTrap					&operator=(NinjaTrap const &rRhs);
 
 	protected:
+
 		static std::string const	__constructorVoiceLines[];
 		static std::string const	__destructorVoiceLines[];
 		static std::string const	__rangedAttackVoiceLines[];

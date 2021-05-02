@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:38:47 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 20:48:32 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:23:30 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 std::string const		&Bureaucrat::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						Bureaucrat::getGrade(void) const
 {
-	return (this->_grade);
+	return (_grade);
 }
 
-void					Bureaucrat::incGrade(void) throw (GradeTooHighException)
+void					Bureaucrat::incGrade(void)
+							throw (GradeTooHighException)
 {
-	if (this->_grade <= 1)
+	if (_grade <= 1)
 		throw (GradeTooHighException());
-	--this->_grade;
+	--_grade;
 }
 
-void					Bureaucrat::decGrade(void) throw (GradeTooLowException)
+void					Bureaucrat::decGrade(void)
+							throw (GradeTooLowException)
 {
-	if (this->_grade >= 150)
+	if (_grade >= 150)
 		throw (GradeTooLowException());
-	++this->_grade;
+	++_grade;
 }
 
 						Bureaucrat::Bureaucrat(std::string const &rName, int grade)
@@ -59,7 +61,10 @@ void					Bureaucrat::decGrade(void) throw (GradeTooLowException)
 
 Bureaucrat				&Bureaucrat::operator=(Bureaucrat const &rRhs)
 {
-	this->_grade = rRhs.getGrade();
+	if (this != &rRhs)
+	{
+		_grade = rRhs.getGrade();
+	}
 	return (*this);
 }
 

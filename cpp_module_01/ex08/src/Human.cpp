@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 00:31:34 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 19:23:02 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:13:15 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void			Human::action(std::string const &rActionName, std::string const &rTarget)
 
 Human			&Human::operator=(Human const &rRhs)
 {
-	this->_name = rRhs._name;
+	if (this != &rRhs)
+	{
+		_name = rRhs._name;
+	}
 	return (*this);
 }
 
@@ -65,7 +68,7 @@ void			Human::_meleeAttack(std::string const &rTarget)
 		is_crit = true;
 		std::cout << clr_crit;
 	}
-	std::cout << this->_name << " punches " << rTarget;
+	std::cout << _name << " punches " << rTarget;
 	if (is_crit)
 		std::cout << " with a devastating melee attack for " << damage * 2 << " hit points.";
 	else
@@ -87,7 +90,7 @@ void			Human::_rangedAttack(std::string const &rTarget)
 		is_crit = true;
 		std::cout << clr_crit;
 	}
-	std::cout << this->_name << " shoots " << rTarget;
+	std::cout << _name << " shoots " << rTarget;
 	if (is_crit)
 		std::cout << " in the eye for " << damage * 2 << " hit points. Ouch!";
 	else
@@ -109,7 +112,7 @@ void			Human::_intimidatingShout(std::string const &rTarget)
 		is_crit = true;
 		std::cout << clr_crit;
 	}
-	std::cout << this->_name << " shouts at " << rTarget;
+	std::cout << _name << " shouts at " << rTarget;
 	if (is_crit)
 		std::cout << " intimidatingly loudly for " << damage * 2 << " hit points.";
 	else

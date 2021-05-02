@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:55:35 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:41:36 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:12:26 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 class					Cure : public AMateria
 {
 	public:
+
 		AMateria		*clone(void) const;
 		void			use(ICharacter &rTarget);
 
 						Cure(void);
 						Cure(Cure const &rSrc);
 						~Cure(void);
+
 		Cure			&operator=(Cure const &rRhs);
 };
 

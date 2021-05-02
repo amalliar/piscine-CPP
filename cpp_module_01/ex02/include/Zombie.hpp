@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:51:43 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 23:32:24 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 16:52:12 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class						Zombie
 {
 	public:
+
 		int					setName(std::string const &rName);
 		int					setType(std::string const &rType);
 
@@ -34,6 +35,7 @@ class						Zombie
 		Zombie				&operator=(Zombie const &rRhs);
 
 	private:
+
 		std::string			_name;
 		std::string			_type;
 };

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 00:28:40 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 19:16:32 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:10:39 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct				s_action
 class						Human
 {
 	public:
+
 		static size_t const	numActs = 3;
 		static t_action		actMap[numActs];
 
@@ -36,9 +37,11 @@ class						Human
 							Human(std::string const &rName);
 							Human(Human const &rSrc);
 							~Human(void);
+
 		Human				&operator=(Human const &rRhs);
 
 	private:
+
 		std::string			_name;
 
 		void				_meleeAttack(std::string const &rTarget);

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 04:57:43 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/28 06:32:39 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:02:19 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void				CentralBureaucracy::feedBureaucrat(Bureaucrat const &rBureaucrat)
 	{
 		try
 		{
-			this->_officeBlocks[i].setSigner(rBureaucrat);
+			_officeBlocks[i].setSigner(rBureaucrat);
 			return ;
 		}
 		catch (OfficeBlock::SameObjectRefException)
@@ -30,9 +30,9 @@ void				CentralBureaucracy::feedBureaucrat(Bureaucrat const &rBureaucrat)
 
 		try
 		{
-			this->_officeBlocks[i].setExecutor(rBureaucrat);
-			this->_officeBlocks[i].setIntern(this->_generateIntern());
-			this->_numFilledOfficeBlocks += 1;
+			_officeBlocks[i].setExecutor(rBureaucrat);
+			_officeBlocks[i].setIntern(_generateIntern());
+			_numFilledOfficeBlocks += 1;
 			return ;
 		}
 		catch (OfficeBlock::SameObjectRefException)
@@ -46,7 +46,7 @@ void				CentralBureaucracy::feedBureaucrat(Bureaucrat const &rBureaucrat)
 
 void				CentralBureaucracy::queueUp(std::string const &rTarget)
 {
-	this->_targetQueue.push(rTarget);
+	_targetQueue.push(rTarget);
 }
 
 void				CentralBureaucracy::doBureaucracy(void)
@@ -54,18 +54,18 @@ void				CentralBureaucracy::doBureaucracy(void)
 {
 	size_t		ob_idx = 0;
 
-	if (this->_numFilledOfficeBlocks == 0)
+	if (_numFilledOfficeBlocks == 0)
 		throw (NoFilledOfficeBlocksException());
-	while (this->_targetQueue.size() != 0)
+	while (_targetQueue.size() != 0)
 	{
 		try
 		{
-			this->_officeBlocks[ob_idx].doBureaucracy(Intern::actionMap[std::rand() % Intern::numKnownForms].name, \
-				this->_targetQueue.front());
-			this->_targetQueue.pop();
+			_officeBlocks[ob_idx].doBureaucracy(Intern::actionMap[std::rand() % Intern::numKnownForms].name, \
+				_targetQueue.front());
+			_targetQueue.pop();
 		}
 		catch (...) {}
-		ob_idx = (ob_idx + 1) % this->_numFilledOfficeBlocks;
+		ob_idx = (ob_idx + 1) % _numFilledOfficeBlocks;
 	}
 }
 
@@ -95,8 +95,8 @@ const char			*CentralBureaucracy::NoFilledOfficeBlocksException::what() const th
 
 Intern const		&CentralBureaucracy::_generateIntern(void)
 {
-	this->_internList.push_back(Intern());
-	return (this->_internList.back());
+	_internList.push_back(Intern());
+	return (_internList.back());
 }
 
 					CentralBureaucracy::CentralBureaucracy(CentralBureaucracy const &rSrc)

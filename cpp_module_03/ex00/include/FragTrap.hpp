@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:41:31 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:22:31 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 class								FragTrap
 {
 	public:
+
 		std::string	const			&getName(void) const;
 		std::string	const			&getMsgColor(void) const;
 		int							getLevel(void) const;
@@ -55,9 +56,11 @@ class								FragTrap
 									FragTrap(std::string const &rName);
 									FragTrap(FragTrap const &rSrc);
 									~FragTrap(void);
+
 		FragTrap					&operator=(FragTrap const &rRhs);
 
 	private:
+
 		std::string					_name;
 		std::string 				_msgColor;
 		int							_level;

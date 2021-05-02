@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:17:11 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:27:21 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:23:15 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,57 +109,57 @@ std::string const	FragTrap::_vaulthunterVoiceLines[] =
 
 std::string	const	&FragTrap::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 std::string	const	&FragTrap::getMsgColor(void) const
 {
-	return (this->_msgColor);
+	return (_msgColor);
 }
 
 int					FragTrap::getLevel(void) const
 {
-	return (this->_level);
+	return (_level);
 }
 
 int					FragTrap::getHitPoints(void) const
 {
-	return (this->_hitPoints);
+	return (_hitPoints);
 }
 
 int					FragTrap::getMaxHitPoints(void) const
 {
-	return (this->_maxHitPoints);
+	return (_maxHitPoints);
 }
 
 int					FragTrap::getEnergyPoints(void) const
 {
-	return (this->_energyPoints);
+	return (_energyPoints);
 }
 
 int					FragTrap::getMaxEnergyPoints(void) const
 {
-	return (this->_maxEnergyPoints);
+	return (_maxEnergyPoints);
 }
 
 int					FragTrap::getMeleeAtkDamage(void) const
 {
-	return (this->_meleeAtkDamage);
+	return (_meleeAtkDamage);
 }
 
 int					FragTrap::getRangedAtkDamage(void) const
 {
-	return (this->_rangedAtkDamage);
+	return (_rangedAtkDamage);
 }
 
 int					FragTrap::getArmorDamageReduction(void) const
 {
-	return (this->_armorDamageReduction);
+	return (_armorDamageReduction);
 }
 
 int					FragTrap::setName(std::string const &rName)
 {
-	this->_name = rName;
+	_name = rName;
 	return (0);
 }
 
@@ -189,7 +189,7 @@ int					FragTrap::setMsgColor(std::string const &rMsgColor)
 	for (size_t i = 0; i < n_colors; ++i)
 		if (!rMsgColor.compare(colors[i]))
 		{
-			this->_msgColor = rMsgColor;
+			_msgColor = rMsgColor;
 			return (0);
 		}
 	return (1);
@@ -199,15 +199,15 @@ int					FragTrap::setLevel(int level)
 {
 	if (level < 0)
 		return (1);
-	this->_level = level;
+	_level = level;
 	return (0);
 }
 
 int					FragTrap::setHitPoints(int hitPoints)
 {
-	if (hitPoints < 0 || hitPoints > this->_maxHitPoints)
+	if (hitPoints < 0 || hitPoints > _maxHitPoints)
 		return (1);
-	this->_hitPoints = hitPoints;
+	_hitPoints = hitPoints;
 	return (0);
 }
 
@@ -215,15 +215,15 @@ int					FragTrap::setMaxHitPoints(int maxHitPoints)
 {
 	if (maxHitPoints < 0)
 		return (1);
-	this->_maxHitPoints = maxHitPoints;
+	_maxHitPoints = maxHitPoints;
 	return (0);
 }
 
 int					FragTrap::setEnergyPoints(int energyPoints)
 {
-	if (energyPoints < 0 || energyPoints > this->_maxEnergyPoints)
+	if (energyPoints < 0 || energyPoints > _maxEnergyPoints)
 		return (1);
-	this->_energyPoints = energyPoints;
+	_energyPoints = energyPoints;
 	return (0);
 }
 
@@ -231,7 +231,7 @@ int					FragTrap::setMeleeAtkDamage(int meleeAtkDamage)
 {
 	if (meleeAtkDamage < 0)
 		return (1);
-	this->_meleeAtkDamage = meleeAtkDamage;
+	_meleeAtkDamage = meleeAtkDamage;
 	return (0);
 }
 
@@ -239,7 +239,7 @@ int					FragTrap::setRangedAtkDamage(int rangedAtkDamage)
 {
 	if (rangedAtkDamage < 0)
 		return (1);
-	this->_rangedAtkDamage = rangedAtkDamage;
+	_rangedAtkDamage = rangedAtkDamage;
 	return (0);
 }
 
@@ -247,7 +247,7 @@ int					FragTrap::setArmorDamageReduction(int armorDamageReduction)
 {
 	if (armorDamageReduction < 0)
 		return (1);
-	this->_armorDamageReduction = armorDamageReduction;
+	_armorDamageReduction = armorDamageReduction;
 	return (0);
 }
 
@@ -266,22 +266,22 @@ int					FragTrap::vaulthunter_dot_exe(std::string const &rTarget)
 	size_t				n_atks = sizeof(vhunter_atk_pool) / sizeof(std::string[3]);
 	int					idx;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (-1);
-	if (this->_energyPoints < 25)
+	if (_energyPoints < 25)
 	{
 		_printInfoMessage("Not enough energy points to execute VaultHunter.EXE");
 		return (-1);
 	}
-	this->_printVoiceMessage(FragTrap::_vaulthunterVoiceLines[std::rand() % n_voices]);
-	if ((this->_energyPoints -= 25) < 0)
-		this->_energyPoints = 0;
+	_printVoiceMessage(FragTrap::_vaulthunterVoiceLines[std::rand() % n_voices]);
+	if ((_energyPoints -= 25) < 0)
+		_energyPoints = 0;
 	idx = std::rand() % n_atks;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes VaultHunter.EXE <" + vhunter_atk_pool[idx][0] + \
+	msg += " " + _name + " executes VaultHunter.EXE <" + vhunter_atk_pool[idx][0] + \
 		"> on " + rTarget + " dealing " + vhunter_atk_pool[idx][2] + " points of damage! Wow!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(vhunter_atk_pool[idx][1]);
+	_printInfoMessage(msg);
+	_printVoiceMessage(vhunter_atk_pool[idx][1]);
 	return (std::stoi(vhunter_atk_pool[idx][2]));
 }
 
@@ -290,13 +290,13 @@ int					FragTrap::rangedAttack(std::string const &rTarget)
 	size_t			n_voices = sizeof(FragTrap::_rangedAttackVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " attacks " + rTarget + " at range causing " + \
-		std::to_string(this->_rangedAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(FragTrap::_rangedAttackVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " attacks " + rTarget + " at range causing " + \
+		std::to_string(_rangedAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(FragTrap::_rangedAttackVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -305,13 +305,13 @@ int					FragTrap::meleeAttack(std::string const &rTarget)
 	size_t			n_voices = sizeof(FragTrap::_meleeAttackVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " punches " + rTarget + " causing " + \
-		std::to_string(this->_meleeAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(FragTrap::_meleeAttackVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " punches " + rTarget + " causing " + \
+		std::to_string(_meleeAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(FragTrap::_meleeAttackVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -320,21 +320,21 @@ int					FragTrap::takeDamage(unsigned int amount)
 	size_t			n_voices = sizeof(FragTrap::_takeDamageVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	amount -= this->_armorDamageReduction;
+	amount -= _armorDamageReduction;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " is hit for " + std::to_string(amount) + " points of damage!";
-	this->_printInfoMessage(msg);
-	if ((this->_hitPoints -= amount) <= 0)
+	msg += " " + _name + " is hit for " + std::to_string(amount) + " points of damage!";
+	_printInfoMessage(msg);
+	if ((_hitPoints -= amount) <= 0)
 	{
-		this->_hitPoints = 0;
+		_hitPoints = 0;
 		msg = typeid(*this).name();
-		msg += " " + this->_name + " has been knocked out.";
-		this->_printInfoMessage(msg);
+		msg += " " + _name + " has been knocked out.";
+		_printInfoMessage(msg);
 		return (0);
 	}
-	this->_printVoiceMessage(FragTrap::_takeDamageVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(FragTrap::_takeDamageVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -343,17 +343,17 @@ int					FragTrap::beRepaired(unsigned int amount)
 	size_t			n_voices = sizeof(FragTrap::_beRepairedVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	if ((this->_hitPoints += amount) > this->_maxHitPoints)
+	if ((_hitPoints += amount) > _maxHitPoints)
 	{
-		amount -= this->_hitPoints - this->_maxHitPoints;
-		this->_hitPoints = this->_maxHitPoints;
+		amount -= _hitPoints - _maxHitPoints;
+		_hitPoints = _maxHitPoints;
 	}
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " has been repaired for " + std::to_string(amount) + " hit points.";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(FragTrap::_beRepairedVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " has been repaired for " + std::to_string(amount) + " hit points.";
+	_printInfoMessage(msg);
+	_printVoiceMessage(FragTrap::_beRepairedVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -375,8 +375,8 @@ int					FragTrap::beRepaired(unsigned int amount)
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been created.";
-	this->_printDebugMessage(dmsg);
-	this->_printVoiceMessage(FragTrap::_constructorVoiceLines[std::rand() % n_voices]);
+	_printDebugMessage(dmsg);
+	_printVoiceMessage(FragTrap::_constructorVoiceLines[std::rand() % n_voices]);
 }
 
 					FragTrap::FragTrap(FragTrap const &rSrc)
@@ -389,25 +389,28 @@ int					FragTrap::beRepaired(unsigned int amount)
 	size_t			n_voices = sizeof(FragTrap::_destructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_printVoiceMessage(FragTrap::_destructorVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(FragTrap::_destructorVoiceLines[std::rand() % n_voices]);
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been destroyed.";
-	this->_printDebugMessage(dmsg);
+	_printDebugMessage(dmsg);
 }
 
 FragTrap			&FragTrap::operator=(FragTrap const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_msgColor = rRhs.getMsgColor();
-	this->_level = rRhs.getLevel();
-	this->_hitPoints = rRhs.getHitPoints();
-	this->_maxHitPoints = rRhs.getMaxHitPoints();
-	this->_energyPoints = rRhs.getEnergyPoints();
-	this->_maxEnergyPoints = rRhs.getMaxEnergyPoints();
-	this->_meleeAtkDamage = rRhs.getMeleeAtkDamage();
-	this->_rangedAtkDamage = rRhs.getRangedAtkDamage();
-	this->_armorDamageReduction = rRhs.getArmorDamageReduction();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_msgColor = rRhs.getMsgColor();
+		_level = rRhs.getLevel();
+		_hitPoints = rRhs.getHitPoints();
+		_maxHitPoints = rRhs.getMaxHitPoints();
+		_energyPoints = rRhs.getEnergyPoints();
+		_maxEnergyPoints = rRhs.getMaxEnergyPoints();
+		_meleeAtkDamage = rRhs.getMeleeAtkDamage();
+		_rangedAtkDamage = rRhs.getRangedAtkDamage();
+		_armorDamageReduction = rRhs.getArmorDamageReduction();
+	}
 	return (*this);
 }
 
@@ -415,7 +418,7 @@ void				FragTrap::_printVoiceMessage(std::string const &rMsg) const
 {
 	std::string const	noc = "\033[0m";
 
-	std::cout << this->_msgColor << this->_name << ": " << rMsg << noc << std::endl;
+	std::cout << _msgColor << _name << ": " << rMsg << noc << std::endl;
 }
 
 void				FragTrap::_printInfoMessage(std::string const &rMsg) const

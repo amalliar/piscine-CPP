@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:53:44 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:19:55 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:29:24 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void			PlasmaRifle::attack(void) const
 
 PlasmaRifle		&PlasmaRifle::operator=(PlasmaRifle const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_apcost = rRhs.getAPCost();
-	this->_damage = rRhs.getDamage();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_apcost = rRhs.getAPCost();
+		_damage = rRhs.getDamage();
+	}
 	return (*this);
 }

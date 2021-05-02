@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:38:34 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/28 07:53:21 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 13:41:34 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 class					Span : public std::vector<int>
 {
 	public:
+
 		template <typename InputIterator>
 		void			addRange(InputIterator first, InputIterator last)
 							throw (std::length_error);
@@ -36,10 +37,12 @@ class					Span : public std::vector<int>
 						Span(size_t N);
 						Span(Span const &rSrc);
 						~Span(void);
+
 		Span			&operator=(Span const &rRhs)
 							throw (std::length_error);
 
 	private:
+
 		size_t const	_N;
 
 		// Restrict access to some of the base class member functions.
@@ -59,9 +62,9 @@ class					Span : public std::vector<int>
 template <typename InputIterator>
 void		Span::addRange(InputIterator first, InputIterator last) throw (std::length_error)
 {
-	if (this->size() + std::distance(first, last) > this->_N)
+	if (size() + std::distance(first, last) > _N)
 		throw (std::length_error("Span::_M_fill_insert"));
-	this->insert(this->end(), first, last);
+	insert(end(), first, last);
 }
 
 #endif // SPAN_HPP

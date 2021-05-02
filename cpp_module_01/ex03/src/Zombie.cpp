@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:51:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 23:49:27 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 16:56:34 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ std::string		Zombie::zombieTypes[] =
 
 int				Zombie::setName(std::string const &rName)
 {
-	this->_name = rName;
+	_name = rName;
 	return (0);
 }
 
@@ -38,7 +38,7 @@ int				Zombie::setType(std::string const &rType)
 	for (size_t i = 0; i < numZombieTypes; ++i)
 		if (!rType.compare(zombieTypes[i]))
 		{
-			this->_type = rType;
+			_type = rType;
 			return (0);
 		}
 	return (1);
@@ -49,9 +49,9 @@ void			Zombie::announce(void) const
 	std::string		clr_bred = "\033[1;31m";
 	std::string		clr_noc = "\033[0m";
 
-	if (!this->_type.compare("Zombie Yeti"))
+	if (!_type.compare("Zombie Yeti"))
 		std::cout << clr_bred;
-	std::cout << this->_type << " " << this->_name << ": Braiiiiiiinnnssss...";
+	std::cout << _type << " " << _name << ": Braiiiiiiinnnssss...";
 	std::cout << clr_noc << std::endl;
 }
 
@@ -59,7 +59,7 @@ void			Zombie::announce(void) const
 				_name(rName),
 				_type("Zombie")
 {
-	this->setType(rType);
+	setType(rType);
 }
 
 				Zombie::Zombie(Zombie const &rSrc) :
@@ -74,8 +74,11 @@ void			Zombie::announce(void) const
 
 Zombie			&Zombie::operator=(Zombie const &rRhs)
 {
-	this->_name = rRhs._name;
-	this->_type = rRhs._type;
+	if (this != &rRhs)
+	{
+		_name = rRhs._name;
+		_type = rRhs._type;
+	}
 	return (*this);
 }
 
@@ -88,6 +91,6 @@ Zombie			&Zombie::operator=(Zombie const &rRhs)
 	};	
 	size_t				num_names = sizeof(names) / sizeof(std::string);
 
-	this->_name = names[std::rand() % num_names];
-	this->_type = "Zombie";
+	_name = names[std::rand() % num_names];
+	_type = "Zombie";
 }

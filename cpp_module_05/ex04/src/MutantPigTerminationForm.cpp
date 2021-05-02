@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 10:34:44 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 20:45:10 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:48:13 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 std::string const			&MutantPigTerminationForm::getTarget(void) const
 {
-	return (this->_target);
+	return (_target);
 }
 
 							MutantPigTerminationForm::MutantPigTerminationForm(std::string const &rTarget) :
@@ -35,13 +35,16 @@ std::string const			&MutantPigTerminationForm::getTarget(void) const
 
 MutantPigTerminationForm	&MutantPigTerminationForm::operator=(MutantPigTerminationForm const &rRhs)
 {
-	this->_target = rRhs.getTarget();
+	if (this != &rRhs)
+	{
+		_target = rRhs.getTarget();
+	}
 	return (*this);
 }
 
 void						MutantPigTerminationForm::_exec(void) const
 {
-	std::cout << clr_bwhite("That'll do, " + this->_target + ". That'll do...") << std::endl;
+	std::cout << clr_bwhite("That'll do, " + _target + ". That'll do...") << std::endl;
 }
 
 							MutantPigTerminationForm::MutantPigTerminationForm(void) :

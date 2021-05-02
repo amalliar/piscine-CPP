@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:09:26 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 18:02:05 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:41:06 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ AForm			*Intern::makePresidentialPardonForm(std::string const &rTarget)
 
 				Intern::Intern(Intern const &rSrc)
 {
-	*this = rSrc;
+	static_cast<void>(rSrc);
 }
 
 				Intern::~Intern(void)
@@ -64,6 +64,6 @@ AForm			*Intern::makePresidentialPardonForm(std::string const &rTarget)
 
 Intern			&Intern::operator=(Intern const &rRhs)
 {
-	(void)rRhs;
+	static_cast<void>(rRhs);
 	return (*this);
 }

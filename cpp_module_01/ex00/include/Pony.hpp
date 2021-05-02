@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 21:09:03 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/20 22:16:40 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 16:55:38 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@
 # include <iostream>
 # include <string>
 
-class				Pony
+class					Pony
 {
 	public:
+
 		void			drawAscii(void) const;
 		int				setAsciiColor(std::string const &rColor);
 
 						Pony(void);
 						Pony(Pony const &rSrc);
 						~Pony(void);
+
 		Pony			&operator=(Pony const &rRhs);
+
 	private:
+
 		std::string		_asciiColorFmtString;
 		std::string		_memType;
 

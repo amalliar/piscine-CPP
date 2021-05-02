@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:17:11 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:53:06 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:28:56 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,22 +122,22 @@ int					FragTrap::vaulthunter_dot_exe(std::string const &rTarget)
 	size_t				n_atks = sizeof(vhunter_atk_pool) / sizeof(std::string[3]);
 	int					idx;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (-1);
-	if (this->_energyPoints < 25)
+	if (_energyPoints < 25)
 	{
 		_printInfoMessage("Not enough energy points to execute VaultHunter.EXE");
 		return (-1);
 	}
-	this->_printVoiceMessage(__vaulthunterVoiceLines[std::rand() % n_voices]);
-	if ((this->_energyPoints -= 25) < 0)
-		this->_energyPoints = 0;
+	_printVoiceMessage(__vaulthunterVoiceLines[std::rand() % n_voices]);
+	if ((_energyPoints -= 25) < 0)
+		_energyPoints = 0;
 	idx = std::rand() % n_atks;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " executes VaultHunter.EXE <" + vhunter_atk_pool[idx][0] + \
+	msg += " " + _name + " executes VaultHunter.EXE <" + vhunter_atk_pool[idx][0] + \
 		"> on " + rTarget + " dealing " + vhunter_atk_pool[idx][2] + " points of damage! Wow!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(vhunter_atk_pool[idx][1]);
+	_printInfoMessage(msg);
+	_printVoiceMessage(vhunter_atk_pool[idx][1]);
 	return (std::stoi(vhunter_atk_pool[idx][2]));
 }
 
@@ -147,37 +147,37 @@ int					FragTrap::vaulthunter_dot_exe(std::string const &rTarget)
 	size_t			n_voices = sizeof(__constructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_msgColor = "\033[0;33m";
-	this->_meleeAtkDamage = 30;
-	this->_rangedAtkDamage = 20;
-	this->_armorDamageReduction = 5;
-	this->_rangedAttackVoiceLines = __rangedAttackVoiceLines;
-	this->_meleeAttackVoiceLines = __meleeAttackVoiceLines;
-	this->_takeDamageVoiceLines = __takeDamageVoiceLines;
-	this->_beRepairedVoiceLines = __beRepairedVoiceLines;
-	this->_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
-	this->_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
-	this->_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
-	this->_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
+	_msgColor = "\033[0;33m";
+	_meleeAtkDamage = 30;
+	_rangedAtkDamage = 20;
+	_armorDamageReduction = 5;
+	_rangedAttackVoiceLines = __rangedAttackVoiceLines;
+	_meleeAttackVoiceLines = __meleeAttackVoiceLines;
+	_takeDamageVoiceLines = __takeDamageVoiceLines;
+	_beRepairedVoiceLines = __beRepairedVoiceLines;
+	_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
+	_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
+	_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
+	_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
 
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been created.";
-	this->_printDebugMessage(dmsg);
-	this->_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
+	_printDebugMessage(dmsg);
+	_printVoiceMessage(__constructorVoiceLines[std::rand() % n_voices]);
 }
 
 					FragTrap::FragTrap(FragTrap const &rSrc)
 {
 	*this = rSrc;
-	this->_rangedAttackVoiceLines = __rangedAttackVoiceLines;
-	this->_meleeAttackVoiceLines = __meleeAttackVoiceLines;
-	this->_takeDamageVoiceLines = __takeDamageVoiceLines;
-	this->_beRepairedVoiceLines = __beRepairedVoiceLines;
-	this->_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
-	this->_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
-	this->_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
-	this->_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
+	_rangedAttackVoiceLines = __rangedAttackVoiceLines;
+	_meleeAttackVoiceLines = __meleeAttackVoiceLines;
+	_takeDamageVoiceLines = __takeDamageVoiceLines;
+	_beRepairedVoiceLines = __beRepairedVoiceLines;
+	_rangedAttackNumVoices = sizeof(__rangedAttackVoiceLines) / sizeof(std::string);
+	_meleeAttackNumVoices = sizeof(__meleeAttackVoiceLines) / sizeof(std::string);
+	_takeDamageNumVoices = sizeof(__takeDamageVoiceLines) / sizeof(std::string);
+	_beRepairedNumVoices = sizeof(__beRepairedVoiceLines) / sizeof(std::string);
 }
 
 					FragTrap::~FragTrap(void)
@@ -185,25 +185,28 @@ int					FragTrap::vaulthunter_dot_exe(std::string const &rTarget)
 	size_t			n_voices = sizeof(__destructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(__destructorVoiceLines[std::rand() % n_voices]);
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been destroyed.";
-	this->_printDebugMessage(dmsg);
+	_printDebugMessage(dmsg);
 }
 
 FragTrap			&FragTrap::operator=(FragTrap const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_msgColor = rRhs.getMsgColor();
-	this->_level = rRhs.getLevel();
-	this->_hitPoints = rRhs.getHitPoints();
-	this->_maxHitPoints = rRhs.getMaxHitPoints();
-	this->_energyPoints = rRhs.getEnergyPoints();
-	this->_maxEnergyPoints = rRhs.getMaxEnergyPoints();
-	this->_meleeAtkDamage = rRhs.getMeleeAtkDamage();
-	this->_rangedAtkDamage = rRhs.getRangedAtkDamage();
-	this->_armorDamageReduction = rRhs.getArmorDamageReduction();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_msgColor = rRhs.getMsgColor();
+		_level = rRhs.getLevel();
+		_hitPoints = rRhs.getHitPoints();
+		_maxHitPoints = rRhs.getMaxHitPoints();
+		_energyPoints = rRhs.getEnergyPoints();
+		_maxEnergyPoints = rRhs.getMaxEnergyPoints();
+		_meleeAtkDamage = rRhs.getMeleeAtkDamage();
+		_rangedAtkDamage = rRhs.getRangedAtkDamage();
+		_armorDamageReduction = rRhs.getArmorDamageReduction();
+	}
 	return (*this);
 }
 

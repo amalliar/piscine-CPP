@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:10:03 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:24:22 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:20:56 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class						Sorcerer
 {
 	public:
+
 		std::string const	&getName(void) const;
 		std::string const	&getTitle(void) const;
 
@@ -28,9 +29,11 @@ class						Sorcerer
 							Sorcerer(std::string const &rName, std::string const &rTitle);
 							Sorcerer(Sorcerer const &rSrc);
 							~Sorcerer(void);
+
 		Sorcerer			&operator=(Sorcerer const &rRhs);
 
 	protected:
+
 		std::string			_name;
 		std::string			_title;
 

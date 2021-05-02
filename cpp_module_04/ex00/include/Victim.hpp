@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:55:33 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:26:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:22:34 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class						Victim
 {
 	public:
+
 		std::string const	&getName(void) const;
 		int					setName(std::string const &rName);
 
@@ -28,9 +29,11 @@ class						Victim
 							Victim(std::string const &rName);
 							Victim(Victim const &rSrc);
 		virtual				~Victim(void);
+
 		Victim				&operator=(Victim const &rRhs);
 
 	protected:
+
 		std::string			_name;
 
 							Victim(void);

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:46:21 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:32:24 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:33:25 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class						TacticalMarine : public ISpaceMarine
 {
 	public:
+
 		ISpaceMarine		*clone(void) const;
 		void				battleCry(void) const;
 		void				rangedAttack(void) const;
@@ -27,6 +28,7 @@ class						TacticalMarine : public ISpaceMarine
 							TacticalMarine(void);
 							TacticalMarine(TacticalMarine const &rSrc);
 							~TacticalMarine(void);
+
 		TacticalMarine		&operator=(TacticalMarine const &rRhs);
 };
 

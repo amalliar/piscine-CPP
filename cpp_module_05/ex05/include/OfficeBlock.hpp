@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 18:36:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/27 04:40:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:04:31 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 class						OfficeBlock
 {
 	public:
+
 		void				setIntern(Intern const &rIntern)
 								throw (SameObjectRefException, ObjectIsAlreadySetException);
 		void				setSigner(Bureaucrat const &rSigner)
@@ -45,50 +46,60 @@ class						OfficeBlock
 		class				InternNotSetException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				SignerNotSetException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				ExecutorNotSetException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				SameObjectRefException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				ObjectIsAlreadySetException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				SignerGradeTooLowException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				ExecutorGradeTooLowException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class				UnknownFormException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 
 	private:
+
 		Intern const		*_pIntern;
 		Bureaucrat const	*_pSigner;
 		Bureaucrat const	*_pExecutor;
 
 							OfficeBlock(OfficeBlock const &rSrc);
+
 		OfficeBlock			&operator=(OfficeBlock const &rRhs);
 };
 

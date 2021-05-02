@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 18:36:29 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:20:51 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:16:24 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			Peon::getPolymorphed(void) const
 {
-	std::cout << this->_name << " has been turned into a " << CLR_BPURPLE(pink pony) << "!" << std::endl;
+	std::cout << _name << " has been turned into a " << CLR_BPURPLE(pink pony) << "!" << std::endl;
 }
 
 				Peon::Peon(std::string const &rName) :
@@ -36,7 +36,10 @@ void			Peon::getPolymorphed(void) const
 
 Peon			&Peon::operator=(Peon const &rRhs)
 {
-	this->_name = rRhs.getName();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+	}
 	return (*this);
 }
 

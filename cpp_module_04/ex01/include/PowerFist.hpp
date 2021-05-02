@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:48:42 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:20:25 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:27:40 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 class						PowerFist : public AWeapon
 {
 	public:
+
 		virtual void		attack(void) const;
 
 							PowerFist(void);
 							PowerFist(PowerFist const &rSrc);
 		virtual				~PowerFist(void);
+
 		PowerFist			&operator=(PowerFist const &rRhs);
 };
 

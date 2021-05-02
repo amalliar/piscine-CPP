@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:38:47 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 23:47:48 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:07:36 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,48 @@
 
 std::string const		&Bureaucrat::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						Bureaucrat::getGrade(void) const
 {
-	return (this->_grade);
+	return (_grade);
 }
 
-void					Bureaucrat::incGrade(void) throw (GradeTooHighException)
+void					Bureaucrat::incGrade(void)
+							throw (GradeTooHighException)
 {
-	if (this->_grade <= 1)
+	if (_grade <= 1)
 		throw (GradeTooHighException());
-	--this->_grade;
+	--_grade;
 }
 
-void					Bureaucrat::decGrade(void) throw (GradeTooLowException)
+void					Bureaucrat::decGrade(void)
+							throw (GradeTooLowException)
 {
-	if (this->_grade >= 150)
+	if (_grade >= 150)
 		throw (GradeTooLowException());
-	++this->_grade;
+	++_grade;
 }
 
 void					Bureaucrat::signForm(AForm &rForm) const
 							throw (FormIsAlreadySignedException, SignerGradeTooLowException)
 {
-	if (!rForm.isSigned() && this->_grade <= rForm.getGradeToSign())
+	if (!rForm.isSigned() && _grade <= rForm.getGradeToSign())
 	{
-		this->_describeAction(rForm, "signes");
+		_describeAction(rForm, "signes");
 		std::cout << std::endl;
 		rForm.beSigned(*this);
 	}
 	else if (rForm.isSigned())
 	{
-		this->_describeAction(rForm, "cannot sign");
+		_describeAction(rForm, "cannot sign");
 		std::cout << " because the form is already signed" << std::endl;
 		throw (FormIsAlreadySignedException());
 	}
-	else if (this->_grade > rForm.getGradeToSign())
+	else if (_grade > rForm.getGradeToSign())
 	{
-		this->_describeAction(rForm, "cannot sign");
+		_describeAction(rForm, "cannot sign");
 		std::cout << " because his/her grade is too low" << std::endl;
 		throw (SignerGradeTooLowException());
 	}
@@ -62,21 +64,21 @@ void					Bureaucrat::signForm(AForm &rForm) const
 void					Bureaucrat::executeForm(AForm const &rForm) const
 							throw (FormIsNotSignedException, ExecutorGradeTooLowException)
 {
-	if (rForm.isSigned() && this->_grade <= rForm.getGradeToExec())
+	if (rForm.isSigned() && _grade <= rForm.getGradeToExec())
 	{
-		this->_describeAction(rForm, "executes");
+		_describeAction(rForm, "executes");
 		std::cout << std::endl;
 		rForm.execute(*this);
 	}
 	else if (!rForm.isSigned())
 	{
-		this->_describeAction(rForm, "cannot execute");
+		_describeAction(rForm, "cannot execute");
 		std::cout << " because the form is not signed" << std::endl;
 		throw (FormIsNotSignedException());
 	}
-	else if (this->_grade > rForm.getGradeToExec())
+	else if (_grade > rForm.getGradeToExec())
 	{
-		this->_describeAction(rForm, "cannot execute");
+		_describeAction(rForm, "cannot execute");
 		std::cout << " because his/her grade is too low" << std::endl;
 		throw (ExecutorGradeTooLowException());
 	}
@@ -105,7 +107,10 @@ void					Bureaucrat::executeForm(AForm const &rForm) const
 
 Bureaucrat				&Bureaucrat::operator=(Bureaucrat const &rRhs)
 {
-	this->_grade = rRhs._grade;
+	if (this != &rRhs)
+	{
+		_grade = rRhs._grade;
+	}
 	return (*this);
 }
 
@@ -141,8 +146,8 @@ const char				*Bureaucrat::FormIsNotSignedException::what() const throw()
 
 void					Bureaucrat::_describeAction(AForm const &rForm, std::string const &rAction) const
 {
-	std::cout << "Bureaucrat " << this->_name;
-	std::cout << " (Grade " << this->_grade << ") ";
+	std::cout << "Bureaucrat " << _name;
+	std::cout << " (Grade " << _grade << ") ";
 	std::cout << rAction;
 	std::cout << " a " << rForm.getName();
 	std::cout << " (s.grade " << rForm.getGradeToSign();

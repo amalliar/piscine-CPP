@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:55:54 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 15:57:46 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:17:11 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class					StripMiner;
 class					Comet : public IAsteroid
 {
 	public:
+
 		std::string		getName(void) const;
 
 		std::string		beMined(DeepCoreMiner *pDeepCoreMiner) const;
@@ -32,6 +33,7 @@ class					Comet : public IAsteroid
 						Comet(void);
 						Comet(Comet const &rSrc);
 						~Comet(void);
+
 		Comet			&operator=(Comet const &rRhs);
 };
 

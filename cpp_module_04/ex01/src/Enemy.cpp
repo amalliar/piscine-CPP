@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:29:25 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:19:10 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:26:38 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 std::string const		&Enemy::getType(void) const
 {
-	return (this->_type);
+	return (_type);
 }
 
 int						Enemy::getHP(void) const
 {
-	return (this->_hp);
+	return (_hp);
 }
 
 void					Enemy::takeDamage(int damage)
 {
-	if (this->_hp <= 0 || damage <= 0)
+	if (_hp <= 0 || damage <= 0)
 		return ;
-	if ((this->_hp -= damage) < 0)
-		this->_hp = 0;
+	if ((_hp -= damage) < 0)
+		_hp = 0;
 }
 
 						Enemy::Enemy(int hp, std::string const &rType) :
@@ -47,8 +47,11 @@ void					Enemy::takeDamage(int damage)
 
 Enemy					&Enemy::operator=(Enemy const &rRhs)
 {
-	this->_hp = rRhs.getHP();
-	this->_type = rRhs.getType();
+	if (this != &rRhs)
+	{
+		_hp = rRhs.getHP();
+		_type = rRhs.getType();
+	}
 	return (*this);
 }
 

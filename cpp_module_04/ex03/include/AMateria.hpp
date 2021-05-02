@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:26:40 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:35:43 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:09:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class						ICharacter;
 class						AMateria
 {
 	public:
+
 		std::string const	&getType(void) const;
 		unsigned int		getXP(void) const;
 
@@ -29,9 +30,11 @@ class						AMateria
 							AMateria(std::string const &rType);
 							AMateria(AMateria const &rSrc);
 		virtual				~AMateria(void);
+
 		AMateria			&operator=(AMateria const &rRhs);
 
 	protected:
+
 		std::string			_type;
 		unsigned int		_xp;
 

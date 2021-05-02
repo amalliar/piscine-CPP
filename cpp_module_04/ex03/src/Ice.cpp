@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:03:34 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:44:33 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:13:25 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ AMateria			*Ice::clone(void) const
 void				Ice::use(ICharacter &rTarget)
 {
 	std::cout << "* shoots an ice bolt at " << rTarget.getName() << " *" << std::endl;
-	this->_xp += 10;
+	_xp += 10;
 }
 
 					Ice::Ice(void) :
@@ -40,6 +40,9 @@ void				Ice::use(ICharacter &rTarget)
 
 Ice					&Ice::operator=(Ice const &rRhs)
 {
-	this->_xp = rRhs.getXP();
+	if (this != &rRhs)
+	{
+		_xp = rRhs.getXP();
+	}
 	return (*this);
 }

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:47:08 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:26:54 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 class								ClapTrap
 {
 	public:
+
 		std::string const			&getName(void) const;
 		std::string const			&getMsgColor(void) const;
 		int							getLevel(void) const;
@@ -54,9 +55,11 @@ class								ClapTrap
 									ClapTrap(std::string const &rName);
 									ClapTrap(ClapTrap const &rSrc);
 									~ClapTrap(void);
+
 		ClapTrap					&operator=(ClapTrap const &rRhs);
 
 	protected:
+
 		std::string					_name;
 		std::string 				_msgColor;
 		int							_level;

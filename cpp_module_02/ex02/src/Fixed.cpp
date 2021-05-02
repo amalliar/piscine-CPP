@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 04:08:54 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 22:13:05 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:20:02 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 int				Fixed::getRawBits(void) const
 {
-	return (this->_value);
+	return (_value);
 }
 
 void			Fixed::setRawBits(int const raw)
 {
-	this->_value = raw;
+	_value = raw;
 }
 
 int				Fixed::toInt(void) const
 {
-	return (this->_value >> this->_fractBits);
+	return (_value >> _fractBits);
 }
 
 float			Fixed::toFloat(void) const
 {
 	// Shift the fixed point _fractBits positions to the left
 	// so that the fractional part is actually fractional.
-	return ((float)this->_value / (1 << _fractBits));
+	return ((float)_value / (1 << _fractBits));
 }
 
 Fixed			&Fixed::min(Fixed &rLhs, Fixed &rRhs)
@@ -66,14 +66,14 @@ Fixed const		&Fixed::max(Fixed const &rLhs, Fixed const &rRhs)
 
 				Fixed::Fixed(int const iNum)
 {
-	this->_value = iNum << _fractBits;
+	_value = iNum << _fractBits;
 }
 
 				Fixed::Fixed(float const fNum)
 {
 	// Shift the fixed point _fractBits positions to the right
 	// so that the fractional part is now integer.
-	this->_value = roundf(fNum * (1 << _fractBits));
+	_value = roundf(fNum * (1 << _fractBits));
 }
 
 				Fixed::~Fixed(void)
@@ -82,45 +82,48 @@ Fixed const		&Fixed::max(Fixed const &rLhs, Fixed const &rRhs)
 
 Fixed			&Fixed::operator=(Fixed const &rRhs)
 {
-	this->_value = rRhs._value;
+	if (this != &rRhs)
+	{
+		_value = rRhs._value;
+	}
 	return (*this);
 }
 
 bool			Fixed::operator>(Fixed const &rRhs) const
 {
-	return (this->_value > rRhs._value);
+	return (_value > rRhs._value);
 }
 
 bool			Fixed::operator<(Fixed const &rRhs) const
 {
-	return (this->_value < rRhs._value);
+	return (_value < rRhs._value);
 }
 
 bool			Fixed::operator>=(Fixed const &rRhs) const
 {
-	return (this->_value >= rRhs._value);
+	return (_value >= rRhs._value);
 }
 
 bool			Fixed::operator<=(Fixed const &rRhs) const
 {
-	return (this->_value <= rRhs._value);
+	return (_value <= rRhs._value);
 }
 
 bool			Fixed::operator==(Fixed const &rRhs) const
 {
-	return (this->_value == rRhs._value);
+	return (_value == rRhs._value);
 }
 
 bool			Fixed::operator!=(Fixed const &rRhs) const
 {
-	return (this->_value != rRhs._value);
+	return (_value != rRhs._value);
 }
 
 Fixed			Fixed::operator+(Fixed const &rRhs) const
 {
 	Fixed	tmp;
 
-	tmp._value = this->_value + rRhs._value;
+	tmp._value = _value + rRhs._value;
 	return (tmp);
 }
 
@@ -128,23 +131,23 @@ Fixed			Fixed::operator-(Fixed const &rRhs) const
 {
 	Fixed	tmp;
 
-	tmp._value = this->_value - rRhs._value;
+	tmp._value = _value - rRhs._value;
 	return (tmp);
 }
 
 Fixed			Fixed::operator*(Fixed const &rRhs) const
 {
-	return (Fixed(this->toFloat() * rRhs.toFloat()));
+	return (Fixed(toFloat() * rRhs.toFloat()));
 }
 
 Fixed			Fixed::operator/(Fixed const &rRhs) const
 {
-	return (Fixed(this->toFloat() / rRhs.toFloat()));
+	return (Fixed(toFloat() / rRhs.toFloat()));
 }
 
 Fixed			Fixed::operator++(void)  // Prefix form.
 {
-	++this->_value;
+	++_value;
 	return (Fixed(*this));
 }
 
@@ -152,13 +155,13 @@ Fixed			Fixed::operator++(int)  // Postfix form.
 {
 	Fixed	tmp(*this);
 
-	++this->_value;
+	++_value;
 	return (tmp);
 }
 
 Fixed			Fixed::operator--(void)
 {
-	--this->_value;
+	--_value;
 	return (Fixed(*this));
 }
 
@@ -166,7 +169,7 @@ Fixed			Fixed::operator--(int)
 {
 	Fixed	tmp(*this);
 
-	--this->_value;
+	--_value;
 	return (tmp);
 }
 

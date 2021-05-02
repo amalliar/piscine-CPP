@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:42:24 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:10:53 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:23:21 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 std::string const		&AWeapon::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						AWeapon::getAPCost(void) const
 {
-	return (this->_apcost);
+	return (_apcost);
 }
 
 int						AWeapon::getDamage(void) const
 {
-	return (this->_damage);
+	return (_damage);
 }
 
 						AWeapon::AWeapon(std::string const &rName, int apcost, int damage) :
@@ -45,9 +45,12 @@ int						AWeapon::getDamage(void) const
 
 AWeapon					&AWeapon::operator=(AWeapon const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_apcost = rRhs.getAPCost();
-	this->_damage = rRhs.getDamage();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_apcost = rRhs.getAPCost();
+		_damage = rRhs.getDamage();
+	}
 	return (*this);
 }
 

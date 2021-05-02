@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 20:58:46 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 00:59:51 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:03:22 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class					Human
 {
 	public:
+
 		Brain const		&getBrain(void) const;
 		std::string		identify(void) const;
 
@@ -26,9 +27,11 @@ class					Human
 						~Human(void);
 
 	private:
+
 		Brain const 	_brain;
 
 						Human(Human const &rSrc);
+
 		Human			&operator=(Human const &rRhs);
 };
 

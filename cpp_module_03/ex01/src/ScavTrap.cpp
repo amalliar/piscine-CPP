@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:17:11 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 01:38:26 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:25:55 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,57 +68,57 @@ std::string const	ScavTrap::_challengeNewcomerVoiceLines[] =
 
 std::string const	&ScavTrap::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 std::string const	&ScavTrap::getMsgColor(void) const
 {
-	return (this->_msgColor);
+	return (_msgColor);
 }
 
 int					ScavTrap::getLevel(void) const
 {
-	return (this->_level);
+	return (_level);
 }
 
 int					ScavTrap::getHitPoints(void) const
 {
-	return (this->_hitPoints);
+	return (_hitPoints);
 }
 
 int					ScavTrap::getMaxHitPoints(void) const
 {
-	return (this->_maxHitPoints);
+	return (_maxHitPoints);
 }
 
 int					ScavTrap::getEnergyPoints(void) const
 {
-	return (this->_energyPoints);
+	return (_energyPoints);
 }
 
 int					ScavTrap::getMaxEnergyPoints(void) const
 {
-	return (this->_maxEnergyPoints);
+	return (_maxEnergyPoints);
 }
 
 int					ScavTrap::getMeleeAtkDamage(void) const
 {
-	return (this->_meleeAtkDamage);
+	return (_meleeAtkDamage);
 }
 
 int					ScavTrap::getRangedAtkDamage(void) const
 {
-	return (this->_rangedAtkDamage);
+	return (_rangedAtkDamage);
 }
 
 int					ScavTrap::getArmorDamageReduction(void) const
 {
-	return (this->_armorDamageReduction);
+	return (_armorDamageReduction);
 }
 
 int					ScavTrap::setName(std::string const &name)
 {
-	this->_name = name;
+	_name = name;
 	return (0);
 }
 
@@ -148,7 +148,7 @@ int					ScavTrap::setMsgColor(std::string const &rMsgColor)
 	for (size_t i = 0; i < n_colors; ++i)
 		if (!rMsgColor.compare(colors[i]))
 		{
-			this->_msgColor = rMsgColor;
+			_msgColor = rMsgColor;
 			return (0);
 		}
 	return (1);
@@ -158,15 +158,15 @@ int					ScavTrap::setLevel(int level)
 {
 	if (level < 0)
 		return (1);
-	this->_level = level;
+	_level = level;
 	return (0);
 }
 
 int					ScavTrap::setHitPoints(int hitPoints)
 {
-	if (hitPoints < 0 || hitPoints > this->_maxHitPoints)
+	if (hitPoints < 0 || hitPoints > _maxHitPoints)
 		return (1);
-	this->_hitPoints = hitPoints;
+	_hitPoints = hitPoints;
 	return (0);
 }
 
@@ -174,15 +174,15 @@ int					ScavTrap::setMaxHitPoints(int maxHitPoints)
 {
 	if (maxHitPoints < 0)
 		return (1);
-	this->_maxHitPoints = maxHitPoints;
+	_maxHitPoints = maxHitPoints;
 	return (0);
 }
 
 int					ScavTrap::setEnergyPoints(int energyPoints)
 {
-	if (energyPoints < 0 || energyPoints > this->_maxEnergyPoints)
+	if (energyPoints < 0 || energyPoints > _maxEnergyPoints)
 		return (1);
-	this->_energyPoints = energyPoints;
+	_energyPoints = energyPoints;
 	return (0);
 }
 
@@ -190,7 +190,7 @@ int					ScavTrap::setMeleeAtkDamage(int meleeAtkDamage)
 {
 	if (meleeAtkDamage < 0)
 		return (1);
-	this->_meleeAtkDamage = meleeAtkDamage;
+	_meleeAtkDamage = meleeAtkDamage;
 	return (0);
 }
 
@@ -198,7 +198,7 @@ int					ScavTrap::setRangedAtkDamage(int rangedAtkDamage)
 {
 	if (rangedAtkDamage < 0)
 		return (1);
-	this->_rangedAtkDamage = rangedAtkDamage;
+	_rangedAtkDamage = rangedAtkDamage;
 	return (0);
 }
 
@@ -206,7 +206,7 @@ int					ScavTrap::setArmorDamageReduction(int armorDamageReduction)
 {
 	if (armorDamageReduction < 0)
 		return (1);
-	this->_armorDamageReduction = armorDamageReduction;
+	_armorDamageReduction = armorDamageReduction;
 	return (0);
 }
 
@@ -215,21 +215,21 @@ int					ScavTrap::challengeNewcomer(std::string const &rTarget)
 	size_t				n_voices = sizeof(ScavTrap::_challengeNewcomerVoiceLines) / sizeof(std::string);
 	std::string			msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
-	if (this->_energyPoints < 10)
+	if (_energyPoints < 10)
 	{
 		_printInfoMessage("Not enough energy points to challengeNewcomer");
 		return (1);
 	}
-	if ((this->_energyPoints -= 10) < 0)
-		this->_energyPoints = 0;
+	if ((_energyPoints -= 10) < 0)
+		_energyPoints = 0;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " challenges " + rTarget + "!";
-	this->_printInfoMessage(msg);
+	msg += " " + _name + " challenges " + rTarget + "!";
+	_printInfoMessage(msg);
 	msg = "Greetings " + rTarget + "! I have a new challenge for you:";
-	this->_printVoiceMessage(msg);
-	this->_printVoiceMessage(ScavTrap::_challengeNewcomerVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(msg);
+	_printVoiceMessage(ScavTrap::_challengeNewcomerVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -238,13 +238,13 @@ int					ScavTrap::rangedAttack(std::string const &rTarget)
 	size_t			n_voices = sizeof(ScavTrap::_rangedAttackVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " attacks " + rTarget + " at range causing " + \
-		std::to_string(this->_rangedAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(ScavTrap::_rangedAttackVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " attacks " + rTarget + " at range causing " + \
+		std::to_string(_rangedAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(ScavTrap::_rangedAttackVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -253,13 +253,13 @@ int					ScavTrap::meleeAttack(std::string const &rTarget)
 	size_t			n_voices = sizeof(ScavTrap::_meleeAttackVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || rTarget.empty())
+	if (_hitPoints <= 0 || rTarget.empty())
 		return (1);
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " punches " + rTarget + " causing " + \
-		std::to_string(this->_meleeAtkDamage) + " points of damage!";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(ScavTrap::_meleeAttackVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " punches " + rTarget + " causing " + \
+		std::to_string(_meleeAtkDamage) + " points of damage!";
+	_printInfoMessage(msg);
+	_printVoiceMessage(ScavTrap::_meleeAttackVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -268,21 +268,21 @@ int					ScavTrap::takeDamage(unsigned int amount)
 	size_t			n_voices = sizeof(ScavTrap::_takeDamageVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	amount -= this->_armorDamageReduction;
+	amount -= _armorDamageReduction;
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " is hit for " + std::to_string(amount) + " points of damage!";
-	this->_printInfoMessage(msg);
-	if ((this->_hitPoints -= amount) <= 0)
+	msg += " " + _name + " is hit for " + std::to_string(amount) + " points of damage!";
+	_printInfoMessage(msg);
+	if ((_hitPoints -= amount) <= 0)
 	{
-		this->_hitPoints = 0;
+		_hitPoints = 0;
 		msg = typeid(*this).name();
-		msg += " " + this->_name + " has been knocked out.";
-		this->_printInfoMessage(msg);
+		msg += " " + _name + " has been knocked out.";
+		_printInfoMessage(msg);
 		return (0);
 	}
-	this->_printVoiceMessage(ScavTrap::_takeDamageVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(ScavTrap::_takeDamageVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -291,17 +291,17 @@ int					ScavTrap::beRepaired(unsigned int amount)
 	size_t			n_voices = sizeof(ScavTrap::_beRepairedVoiceLines) / sizeof(std::string);
 	std::string		msg;
 
-	if (this->_hitPoints <= 0 || amount <= 0)
+	if (_hitPoints <= 0 || amount <= 0)
 		return (1);
-	if ((this->_hitPoints += amount) > this->_maxHitPoints)
+	if ((_hitPoints += amount) > _maxHitPoints)
 	{
-		amount -= this->_hitPoints - this->_maxHitPoints;
-		this->_hitPoints = this->_maxHitPoints;
+		amount -= _hitPoints - _maxHitPoints;
+		_hitPoints = _maxHitPoints;
 	}
 	msg = typeid(*this).name();
-	msg += " " + this->_name + " has been repaired for " + std::to_string(amount) + " hit points.";
-	this->_printInfoMessage(msg);
-	this->_printVoiceMessage(ScavTrap::_beRepairedVoiceLines[std::rand() % n_voices]);
+	msg += " " + _name + " has been repaired for " + std::to_string(amount) + " hit points.";
+	_printInfoMessage(msg);
+	_printVoiceMessage(ScavTrap::_beRepairedVoiceLines[std::rand() % n_voices]);
 	return (0);
 }
 
@@ -323,8 +323,8 @@ int					ScavTrap::beRepaired(unsigned int amount)
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been created.";
-	this->_printDebugMessage(dmsg);
-	this->_printVoiceMessage(ScavTrap::_constructorVoiceLines[std::rand() % n_voices]);
+	_printDebugMessage(dmsg);
+	_printVoiceMessage(ScavTrap::_constructorVoiceLines[std::rand() % n_voices]);
 }
 
 					ScavTrap::ScavTrap(ScavTrap const &rSrc)
@@ -337,25 +337,28 @@ int					ScavTrap::beRepaired(unsigned int amount)
 	size_t			n_voices = sizeof(ScavTrap::_destructorVoiceLines) / sizeof(std::string);
 	std::string		dmsg;
 
-	this->_printVoiceMessage(ScavTrap::_destructorVoiceLines[std::rand() % n_voices]);
+	_printVoiceMessage(ScavTrap::_destructorVoiceLines[std::rand() % n_voices]);
 	dmsg = "Object of type ";
 	dmsg += typeid(*this).name();
 	dmsg += " has been destroyed.";
-	this->_printDebugMessage(dmsg);
+	_printDebugMessage(dmsg);
 }
 
 ScavTrap			&ScavTrap::operator=(ScavTrap const &rRhs)
 {
-	this->_name = rRhs.getName();
-	this->_msgColor = rRhs.getMsgColor();
-	this->_level = rRhs.getLevel();
-	this->_hitPoints = rRhs.getHitPoints();
-	this->_maxHitPoints = rRhs.getMaxHitPoints();
-	this->_energyPoints = rRhs.getEnergyPoints();
-	this->_maxEnergyPoints = rRhs.getMaxEnergyPoints();
-	this->_meleeAtkDamage = rRhs.getMeleeAtkDamage();
-	this->_rangedAtkDamage = rRhs.getRangedAtkDamage();
-	this->_armorDamageReduction = rRhs.getArmorDamageReduction();
+	if (this != &rRhs)
+	{
+		_name = rRhs.getName();
+		_msgColor = rRhs.getMsgColor();
+		_level = rRhs.getLevel();
+		_hitPoints = rRhs.getHitPoints();
+		_maxHitPoints = rRhs.getMaxHitPoints();
+		_energyPoints = rRhs.getEnergyPoints();
+		_maxEnergyPoints = rRhs.getMaxEnergyPoints();
+		_meleeAtkDamage = rRhs.getMeleeAtkDamage();
+		_rangedAtkDamage = rRhs.getRangedAtkDamage();
+		_armorDamageReduction = rRhs.getArmorDamageReduction();
+	}
 	return (*this);
 }
 
@@ -363,7 +366,7 @@ void				ScavTrap::_printVoiceMessage(std::string const &rMsg) const
 {
 	std::string const	noc = "\033[0m";
 
-	std::cout << this->_msgColor << this->_name << ": " << rMsg << noc << std::endl;
+	std::cout << _msgColor << _name << ": " << rMsg << noc << std::endl;
 }
 
 void				ScavTrap::_printInfoMessage(std::string const &rMsg) const

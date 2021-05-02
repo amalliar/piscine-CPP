@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 22:45:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 17:34:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:26:45 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 std::string const		&Form::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						Form::getGradeToSign(void) const
 {
-	return (this->_gradeToSign);
+	return (_gradeToSign);
 }
 
 int						Form::getGradeToExec(void) const
 {
-	return (this->_gradeToExec);
+	return (_gradeToExec);
 }
 
 bool					Form::isSigned(void) const
 {
-	return (this->_isSigned);
+	return (_isSigned);
 }
 
 void					Form::beSigned(Bureaucrat const &rBureaucrat)
 							throw (GradeTooLowException, FormIsAlreadySignedException)
 {
-	if (this->_isSigned)
+	if (_isSigned)
 		throw (FormIsAlreadySignedException());
-	if (this->_gradeToSign < rBureaucrat.getGrade())
+	if (_gradeToSign < rBureaucrat.getGrade())
 		throw (GradeTooLowException());
-	this->_isSigned = true;
+	_isSigned = true;
 }
 
 						Form::Form(std::string const &rName, int gradeToSign, int gradeToExec)
@@ -69,7 +69,10 @@ void					Form::beSigned(Bureaucrat const &rBureaucrat)
 
 Form					&Form::operator=(Form const &rRhs)
 {
-	this->_isSigned = rRhs.isSigned();
+	if (this != &rRhs)
+	{
+		_isSigned = rRhs.isSigned();
+	}
 	return (*this);
 }
 

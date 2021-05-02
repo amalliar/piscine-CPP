@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 04:12:01 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/28 06:34:00 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:01:35 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 class							CentralBureaucracy
 {
 	public:
+
 		void					feedBureaucrat(Bureaucrat const &rBureaucrat)
 									throw (SameObjectRefException, BureaucracyIsFullException);
 		void					queueUp(std::string const &rTarget);
@@ -38,20 +39,24 @@ class							CentralBureaucracy
 		class					SameObjectRefException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class					BureaucracyIsFullException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 		class					NoFilledOfficeBlocksException : public std::exception
 		{
 			public:
+
 				virtual const char *what() const throw();
 		};
 
 	private:
+
 		static const size_t		_numOfficeBlocks = 20;
 		size_t					_numFilledOfficeBlocks;
 		OfficeBlock				_officeBlocks[_numOfficeBlocks];
@@ -61,6 +66,7 @@ class							CentralBureaucracy
 		Intern const			&_generateIntern(void);
 
 								CentralBureaucracy(CentralBureaucracy const &rSrc);
+
 		CentralBureaucracy		&operator=(CentralBureaucracy const &rRhs);
 };
 

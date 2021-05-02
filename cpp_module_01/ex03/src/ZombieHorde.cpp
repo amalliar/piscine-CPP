@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 20:13:00 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 23:54:34 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:00:57 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,37 @@
 
 void			ZombieHorde::announce(void) const
 {
-	for (size_t i = 0; i < this->_zmbHordeSize; ++i)
-		this->_pZmbHorde[i].announce();
+	for (size_t i = 0; i < _zmbHordeSize; ++i)
+		_pZmbHorde[i].announce();
 }
 
 				ZombieHorde::ZombieHorde(size_t zmbHordeSize) :
 				_zmbHordeSize(zmbHordeSize)
 {
-	this->_pZmbHorde = new Zombie[this->_zmbHordeSize];
+	_pZmbHorde = new Zombie[_zmbHordeSize];
 }
 
-				ZombieHorde::ZombieHorde(ZombieHorde const &rSrc) :
-				_zmbHordeSize(rSrc._zmbHordeSize)
+				ZombieHorde::ZombieHorde(ZombieHorde const &rSrc)
 {
-	this->_pZmbHorde = new Zombie[this->_zmbHordeSize];
-	for (size_t i = 0; i < this->_zmbHordeSize; ++i)
-		this->_pZmbHorde[i] = rSrc._pZmbHorde[i];
+	*this = rSrc;
 }
 
 				ZombieHorde::~ZombieHorde(void)
 {
-	delete [] this->_pZmbHorde;
+	delete [] _pZmbHorde;
 }
 
 ZombieHorde		&ZombieHorde::operator=(ZombieHorde const &rRhs)
 {
-	this->_zmbHordeSize = rRhs._zmbHordeSize;
-	this->_pZmbHorde = new Zombie[this->_zmbHordeSize];
-	for (size_t i = 0; i < this->_zmbHordeSize; ++i)
-		this->_pZmbHorde[i] = rRhs._pZmbHorde[i];
+	if (this != &rRhs)
+	{
+		if (_zmbHordeSize)
+			delete [] _pZmbHorde;
+		_zmbHordeSize = rRhs._zmbHordeSize;
+		_pZmbHorde = new Zombie[_zmbHordeSize];
+		for (size_t i = 0; i < _zmbHordeSize; ++i)
+			_pZmbHorde[i] = rRhs._pZmbHorde[i];
+	}
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:38:25 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 15:56:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:17:43 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class							StripMiner;
 class							IAsteroid
 {
 	public:
+
 		virtual std::string		getName(void) const = 0;
 
 		virtual std::string		beMined(DeepCoreMiner *pDeepCoreMiner) const = 0;

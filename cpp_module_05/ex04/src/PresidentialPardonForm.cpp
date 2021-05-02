@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 10:34:44 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 19:57:18 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:51:19 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 std::string const		&PresidentialPardonForm::getTarget(void) const
 {
-	return (this->_target);
+	return (_target);
 }
 
 						PresidentialPardonForm::PresidentialPardonForm(std::string const &rTarget) :
@@ -35,13 +35,16 @@ std::string const		&PresidentialPardonForm::getTarget(void) const
 
 PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm const &rRhs)
 {
-	this->_target = rRhs.getTarget();
+	if (this != &rRhs)
+	{
+		_target = rRhs.getTarget();
+	}
 	return (*this);
 }
 
 void					PresidentialPardonForm::_exec(void) const
 {
-	std::cout << clr_bblue(this->_target + " has been pardoned by Zafod Beeblebrox!") << std::endl;
+	std::cout << clr_bblue(_target + " has been pardoned by Zafod Beeblebrox!") << std::endl;
 }
 
 						PresidentialPardonForm::PresidentialPardonForm(void) :

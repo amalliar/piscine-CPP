@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:02:14 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/20 08:49:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 16:42:44 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class						Contact
 {
 	public:
+
 		int					setFirstName(std::string const &rFirstName);
 		int					setLastName(std::string const &rLastName);
 		int					setNickname(std::string const &rNickname);
@@ -48,6 +49,7 @@ class						Contact
 		Contact				&operator=(Contact const &rRhs);
 
 private:
+
 		std::string			_firstName;
 		std::string			_lastName;
 		std::string			_nickname;

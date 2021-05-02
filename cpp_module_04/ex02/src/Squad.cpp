@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:16:40 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:33:23 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:32:01 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int				Squad::getCount(void) const
 {
-	return (this->_count);
+	return (_count);
 }
 
 ISpaceMarine	*Squad::getUnit(int idx) const
 {
-	t_list		*p_lst = this->_pBeginList;
+	t_list		*p_lst = _pBeginList;
 
 	while (p_lst && idx-- > 0)
 		p_lst = p_lst->pNext;
@@ -28,21 +28,21 @@ ISpaceMarine	*Squad::getUnit(int idx) const
 
 int				Squad::push(ISpaceMarine *pSpMarine)
 {
-	t_list		*p_lst = this->_pBeginList;
+	t_list		*p_lst = _pBeginList;
 
 	if (pSpMarine == NULL)
-		return (this->_count);
-	if (this->_count == 0)
+		return (_count);
+	if (_count == 0)
 	{
-		this->_pBeginList = new t_list;
-		this->_pBeginList->pData = pSpMarine;
-		this->_pBeginList->pNext = NULL;
-		return (++this->_count);
+		_pBeginList = new t_list;
+		_pBeginList->pData = pSpMarine;
+		_pBeginList->pNext = NULL;
+		return (++_count);
 	}
 	while (1)
 	{
 		if (p_lst->pData == pSpMarine)
-			return (this->_count);
+			return (_count);
 		if (p_lst->pNext)
 			p_lst = p_lst->pNext;
 		else
@@ -51,7 +51,7 @@ int				Squad::push(ISpaceMarine *pSpMarine)
 	p_lst->pNext = new t_list;
 	p_lst->pNext->pData = pSpMarine;
 	p_lst->pNext->pNext = NULL;
-	return (++this->_count);
+	return (++_count);
 }
 
 				Squad::Squad(void) :
@@ -70,7 +70,7 @@ int				Squad::push(ISpaceMarine *pSpMarine)
 
 				Squad::~Squad(void)
 {
-	this->_lstClear();
+	_lstClear();
 }
 
 Squad			&Squad::operator=(Squad const &rRhs)
@@ -80,16 +80,16 @@ Squad			&Squad::operator=(Squad const &rRhs)
 
 	if (this != &rRhs)
 	{
-		this->_lstClear();
+		_lstClear();
 		while ((p_sp_marine = rRhs.getUnit(idx++)))
-			this->push(p_sp_marine->clone());
+			push(p_sp_marine->clone());
 	}
 	return (*this);
 }
 
 void			Squad::_lstClear(void)
 {
-	t_list		*p_lst = this->_pBeginList;
+	t_list		*p_lst = _pBeginList;
 	t_list		*tmp;
 
 	while ((tmp = p_lst))
@@ -98,6 +98,6 @@ void			Squad::_lstClear(void)
 		delete (ISpaceMarine *)tmp->pData;
 		delete tmp;
 	}
-	this->_count = 0;
-	this->_pBeginList = NULL;
+	_count = 0;
+	_pBeginList = NULL;
 }

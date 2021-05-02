@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 18:36:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/28 06:41:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 10:05:04 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,52 @@
 void			OfficeBlock::setIntern(Intern const &rIntern)
 					throw (SameObjectRefException, ObjectIsAlreadySetException)
 {
-	if (this->_pIntern != NULL)
+	if (_pIntern != NULL)
 	{
-		if (this->_pIntern == &rIntern)
+		if (_pIntern == &rIntern)
 			throw (SameObjectRefException());
 		throw (ObjectIsAlreadySetException());
 	}
-	this->_pIntern = &rIntern;
+	_pIntern = &rIntern;
 }
 
 void			OfficeBlock::setSigner(Bureaucrat const &rSigner)
 					throw (SameObjectRefException, ObjectIsAlreadySetException)
 {
-	if (this->_pSigner != NULL)
+	if (_pSigner != NULL)
 	{
-		if (this->_pSigner == &rSigner || this->_pExecutor == &rSigner)
+		if (_pSigner == &rSigner || _pExecutor == &rSigner)
 			throw (SameObjectRefException());
 		throw (ObjectIsAlreadySetException());
 	}
-	this->_pSigner = &rSigner;
+	_pSigner = &rSigner;
 }
 
 void			OfficeBlock::setExecutor(Bureaucrat const &rExecutor)
 					throw (SameObjectRefException, ObjectIsAlreadySetException)
 {
-	if (this->_pExecutor != NULL)
+	if (_pExecutor != NULL)
 	{
-		if (this->_pSigner == &rExecutor || this->_pExecutor == &rExecutor)
+		if (_pSigner == &rExecutor || _pExecutor == &rExecutor)
 			throw (SameObjectRefException());
 		throw (ObjectIsAlreadySetException());
 	}
-	this->_pExecutor = &rExecutor;
+	_pExecutor = &rExecutor;
 }
 
 void			OfficeBlock::unsetIntern(void)
 {
-	this->_pIntern = NULL;
+	_pIntern = NULL;
 }
 
 void			OfficeBlock::unsetSigner(void)
 {
-	this->_pSigner = NULL;
+	_pSigner = NULL;
 }
 
 void			OfficeBlock::unsetExecutor(void)
 {
-	this->_pExecutor = NULL;
+	_pExecutor = NULL;
 }
 
 void			OfficeBlock::doBureaucracy(std::string const &rFormName, std::string const &rFormTarget)
@@ -70,19 +70,19 @@ void			OfficeBlock::doBureaucracy(std::string const &rFormName, std::string cons
 {
 	AForm		*p_form;
 
-	if (this->_pIntern == NULL)
+	if (_pIntern == NULL)
 		throw (InternNotSetException());
-	if (this->_pSigner == NULL)
+	if (_pSigner == NULL)
 		throw (SignerNotSetException());
-	if (this->_pExecutor == NULL)
+	if (_pExecutor == NULL)
 		throw (ExecutorNotSetException());
-	if (!(p_form = this->_pIntern->makeForm(rFormName, rFormTarget)))
+	if (!(p_form = _pIntern->makeForm(rFormName, rFormTarget)))
 		throw (UnknownFormException());
 
 	try
 	{
-		this->_pSigner->signForm(*p_form);
-		this->_pExecutor->executeForm(*p_form);
+		_pSigner->signForm(*p_form);
+		_pExecutor->executeForm(*p_form);
 		delete p_form;
 	}
 	catch (Bureaucrat::SignerGradeTooLowException)

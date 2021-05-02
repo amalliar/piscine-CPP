@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 08:55:12 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:45:15 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:15:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class					MateriaSource : public IMateriaSource
 {
 	public:
+
 		void			learnMateria(AMateria *pAmateria);
 		AMateria		*createMateria(std::string const &rType);
 		AMateria const	*getAMateria(int idx) const;
@@ -27,9 +28,11 @@ class					MateriaSource : public IMateriaSource
 						MateriaSource(void);
 						MateriaSource(MateriaSource const &rSrc);
 						~MateriaSource(void);
+
 		MateriaSource	&operator=(MateriaSource const &rRhs);
 
 	protected:
+
 		AMateria		*_slots[4];
 		int				_idx_free;
 

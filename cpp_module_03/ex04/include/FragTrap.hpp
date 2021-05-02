@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 22:16:32 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 02:08:35 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:41:39 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@
 class								FragTrap : public virtual ClapTrap
 {
 	public:
+
 		int							vaulthunter_dot_exe(std::string const &rTarget);
 
 									FragTrap(std::string const &rName);
 									FragTrap(FragTrap const &rSrc);
 									~FragTrap(void);
+
 		FragTrap					&operator=(FragTrap const &rRhs);
 
 	protected:
+
 		static std::string const	__constructorVoiceLines[];
 		static std::string const	__destructorVoiceLines[];
 		static std::string const	__rangedAttackVoiceLines[];

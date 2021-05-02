@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:09:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 23:49:54 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 16:54:41 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				ZombieEvent::setZombieType(std::string const &rType)
 	for (size_t i = 0; i < Zombie::numZombieTypes; ++i)
 		if (!rType.compare(Zombie::zombieTypes[i]))
 		{
-			this->_curZombieType = rType;
+			_curZombieType = rType;
 			return (0);
 		}
 	return (1);
@@ -25,7 +25,7 @@ int				ZombieEvent::setZombieType(std::string const &rType)
 
 Zombie			*ZombieEvent::newZombie(std::string const &rName) const
 {
-	return (new Zombie(rName, this->_curZombieType));
+	return (new Zombie(rName, _curZombieType));
 }
 
 Zombie			*ZombieEvent::randomChump(void) const
@@ -33,9 +33,9 @@ Zombie			*ZombieEvent::randomChump(void) const
 	Zombie	*zmb;
 
 	zmb = new Zombie();
-	if (this->_curZombieType == "Zombie Yeti")
+	if (_curZombieType == "Zombie Yeti")
 		zmb->setName("???");
-	zmb->setType(this->_curZombieType);
+	zmb->setType(_curZombieType);
 	zmb->announce();
 	return (zmb);
 }
@@ -56,6 +56,9 @@ Zombie			*ZombieEvent::randomChump(void) const
 
 ZombieEvent		&ZombieEvent::operator=(ZombieEvent const &rRhs)
 {
-	this->_curZombieType = rRhs._curZombieType;
+	if (this != &rRhs)
+	{
+		_curZombieType = rRhs._curZombieType;
+	}
 	return (*this);
 }

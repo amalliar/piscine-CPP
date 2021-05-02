@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 22:45:51 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 17:46:12 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:28:20 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 
 std::string const		&AForm::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						AForm::getGradeToSign(void) const
 {
-	return (this->_gradeToSign);
+	return (_gradeToSign);
 }
 
 int						AForm::getGradeToExec(void) const
 {
-	return (this->_gradeToExec);
+	return (_gradeToExec);
 }
 
 bool					AForm::isSigned(void) const
 {
-	return (this->_isSigned);
+	return (_isSigned);
 }
 
 void					AForm::beSigned(Bureaucrat const &rBureaucrat)
 							throw (GradeTooLowException, FormIsAlreadySignedException)
 {
-	if (this->_isSigned)
+	if (_isSigned)
 		throw (FormIsAlreadySignedException());
-	if (this->_gradeToSign < rBureaucrat.getGrade())
+	if (_gradeToSign < rBureaucrat.getGrade())
 		throw (GradeTooLowException());
-	this->_isSigned = true;
+	_isSigned = true;
 }
 
 void					AForm::execute(Bureaucrat const &rBureaucrat) const
 							throw (GradeTooLowException, FormIsNotSignedException)
 {
-	if (!this->_isSigned)
+	if (!_isSigned)
 		throw (FormIsNotSignedException());
-	if (this->_gradeToExec < rBureaucrat.getGrade())
+	if (_gradeToExec < rBureaucrat.getGrade())
 		throw (GradeTooLowException());
-	this->_exec();
+	_exec();
 }
 
 						AForm::AForm(std::string const &rName, int gradeToSign, int gradeToExec)
@@ -79,7 +79,10 @@ void					AForm::execute(Bureaucrat const &rBureaucrat) const
 
 AForm					&AForm::operator=(AForm const &rRhs)
 {
-	this->_isSigned = rRhs.isSigned();
+	if (this != &rRhs)
+	{
+		_isSigned = rRhs.isSigned();
+	}
 	return (*this);
 }
 

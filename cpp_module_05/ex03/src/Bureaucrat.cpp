@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:38:47 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 20:50:12 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:30:38 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 std::string const		&Bureaucrat::getName(void) const
 {
-	return (this->_name);
+	return (_name);
 }
 
 int						Bureaucrat::getGrade(void) const
 {
-	return (this->_grade);
+	return (_grade);
 }
 
-void					Bureaucrat::incGrade(void) throw (GradeTooHighException)
+void					Bureaucrat::incGrade(void)
+							throw (GradeTooHighException)
 {
-	if (this->_grade <= 1)
+	if (_grade <= 1)
 		throw (GradeTooHighException());
-	--this->_grade;
+	--_grade;
 }
 
-void					Bureaucrat::decGrade(void) throw (GradeTooLowException)
+void					Bureaucrat::decGrade(void)
+							throw (GradeTooLowException)
 {
-	if (this->_grade >= 150)
+	if (_grade >= 150)
 		throw (GradeTooLowException());
-	++this->_grade;
+	++_grade;
 }
 
 void					Bureaucrat::signForm(AForm &rForm)
@@ -41,16 +43,16 @@ void					Bureaucrat::signForm(AForm &rForm)
 	try
 	{
 		rForm.beSigned(*this);
-		std::cout << this->_name << " signs the " << rForm.getName() << std::endl;
+		std::cout << _name << " signs the " << rForm.getName() << std::endl;
 	}
 	catch (AForm::GradeTooLowException)
 	{
-		std::cout << this->_name << " cannot sign the " << rForm.getName() << \
+		std::cout << _name << " cannot sign the " << rForm.getName() << \
 			" because his/her grade is too low" << std::endl;
 	}
 	catch (AForm::FormIsAlreadySignedException)
 	{
-		std::cout << this->_name << " cannot sign the " << rForm.getName() << \
+		std::cout << _name << " cannot sign the " << rForm.getName() << \
 			" because the form is already signed" << std::endl;
 	}
 }
@@ -60,16 +62,16 @@ void					Bureaucrat::executeForm(AForm const &rForm)
 	try
 	{
 		rForm.execute(*this);
-		std::cout << this->_name << " executes the " << rForm.getName() << std::endl;
+		std::cout << _name << " executes the " << rForm.getName() << std::endl;
 	}
 	catch (AForm::GradeTooLowException)
 	{
-		std::cout << this->_name << " cannot execute the " << rForm.getName() << \
+		std::cout << _name << " cannot execute the " << rForm.getName() << \
 			" because his/her grade is too low" << std::endl;
 	}
 	catch (AForm::FormIsNotSignedException)
 	{
-		std::cout << this->_name << " cannot execute the " << rForm.getName() << \
+		std::cout << _name << " cannot execute the " << rForm.getName() << \
 			" because the form is not signed" << std::endl;
 	}
 }
@@ -97,7 +99,10 @@ void					Bureaucrat::executeForm(AForm const &rForm)
 
 Bureaucrat				&Bureaucrat::operator=(Bureaucrat const &rRhs)
 {
-	this->_grade = rRhs.getGrade();
+	if (this != &rRhs)
+	{
+		_grade = rRhs.getGrade();
+	}
 	return (*this);
 }
 

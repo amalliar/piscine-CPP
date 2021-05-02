@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 22:21:59 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 01:19:32 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:09:51 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void			HumanB::attack(void) const
 {
-	if (this->_pWeapon != NULL)
-		std::cout << this->_name << " attacks with his " << this->_pWeapon->getType() << std::endl;
+	if (_pWeapon != NULL)
+		std::cout << _name << " attacks with his " << _pWeapon->getType() << std::endl;
 }
 
 void			HumanB::setWeapon(Weapon &rWeapon)
 {
-	this->_pWeapon = &rWeapon;
+	_pWeapon = &rWeapon;
 }
 
 				HumanB::HumanB(std::string const &rName) :
@@ -41,8 +41,11 @@ void			HumanB::setWeapon(Weapon &rWeapon)
 
 HumanB			&HumanB::operator=(HumanB const &rRhs)
 {
-	this->_name = rRhs._name;
-	this->_pWeapon = rRhs._pWeapon;
+	if (this != &rRhs)
+	{
+		_name = rRhs._name;
+		_pWeapon = rRhs._pWeapon;
+	}
 	return (*this);
 }
 

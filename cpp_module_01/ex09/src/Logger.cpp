@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:24:35 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 19:53:57 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:15:21 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_action		Logger::actMap[] =
 
 int				Logger::log(std::string const &rDest, std::string const &rMsg) const
 {
-	std::string		log_entry = this->_makeLogEntry(rMsg);
+	std::string		log_entry = _makeLogEntry(rMsg);
 	size_t			i;
 
 	for (i = 0; i < numActs; ++i)
@@ -72,7 +72,7 @@ int				Logger::_logToFile(std::string const &rLogEntry) const
 {
 	std::ofstream 	ofs;
 
-	ofs.open(this->_oFile, std::ofstream::app);
+	ofs.open(_oFile, std::ofstream::app);
 	ofs << rLogEntry;
 	ofs.close();
 	return (!ofs.good());

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 14:21:56 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 15:58:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/02 09:19:20 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 class					StripMiner : public IMiningLaser
 {
 	public:
+
 		void			mine(IAsteroid *pAsteroid);
 
 						StripMiner(void);
 						StripMiner(StripMiner const &rSrc);
 						~StripMiner(void);
+
 		StripMiner		&operator=(StripMiner const &rRhs);
 };
 

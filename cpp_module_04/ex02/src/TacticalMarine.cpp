@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:55:17 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/24 03:32:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:33:02 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				TacticalMarine::meleeAttack(void) const
 
 					TacticalMarine::TacticalMarine(TacticalMarine const &rSrc)
 {
-	(void)rSrc;
+	static_cast<void>(rSrc);
 	std::cout << "Tactical Marine ready for battle!" << std::endl;
 }
 
@@ -50,6 +50,6 @@ void				TacticalMarine::meleeAttack(void) const
 
 TacticalMarine		&TacticalMarine::operator=(TacticalMarine const &rRhs)
 {
-	(void)rRhs;
+	static_cast<void>(rRhs);
 	return (*this);
 }

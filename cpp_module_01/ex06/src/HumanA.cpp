@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 22:12:26 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 01:23:27 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:09:44 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			HumanA::attack(void) const
 {
-	std::cout << this->_name << " attacks with his " << this->_rWeapon.getType() << std::endl;
+	std::cout << _name << " attacks with his " << _rWeapon.getType() << std::endl;
 }
 
 				HumanA::HumanA(std::string const &rName, Weapon &rWeapon) :
@@ -35,7 +35,10 @@ void			HumanA::attack(void) const
 
 HumanA			&HumanA::operator=(HumanA const &rRhs)
 {
-	this->_name = rRhs._name;
-	this->_rWeapon = rRhs._rWeapon;
+	if (this != &rRhs)
+	{
+		_name = rRhs._name;
+		_rWeapon = rRhs._rWeapon;
+	}
 	return (*this);
 }
