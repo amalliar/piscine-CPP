@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 20:03:09 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/02 13:45:54 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/03 18:15:23 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,24 @@ class							MutantStack : public std::stack<T, std::deque<T> >
 };
 
 template <typename T>
-													MutantStack<T>::MutantStack(void) :
-													std::stack<T>()
+												MutantStack<T>::MutantStack(void) :
+												std::stack<T>()
 {
 }
 
 template <typename T>
-													MutantStack<T>::MutantStack(MutantStack const &rSrc) :
-													std::stack<T>(rSrc)
+												MutantStack<T>::MutantStack(MutantStack const &rSrc) :
+												std::stack<T>(rSrc)
 {
 }
 
 template <typename T>
-													MutantStack<T>::~MutantStack(void)
+												MutantStack<T>::~MutantStack(void)
 {
 }
 
 template <typename T>
-MutantStack<T>										&MutantStack<T>::operator=(MutantStack const &rRhs)
+MutantStack<T>									&MutantStack<T>::operator=(MutantStack const &rRhs)
 {
 	if (this != &rRhs)
 	{
@@ -70,49 +70,49 @@ MutantStack<T>										&MutantStack<T>::operator=(MutantStack const &rRhs)
 }
 
 template <typename T>
-typename MutantStack<T>::iterator					MutantStack<T>::begin(void)
+typename MutantStack<T>::iterator				MutantStack<T>::begin(void)
 {
 	return (this->c.begin());
 }
 
 template <typename T>
-typename MutantStack<T>::iterator					MutantStack<T>::end(void)
+typename MutantStack<T>::iterator				MutantStack<T>::end(void)
 {
 	return (this->c.end());
 }
 
 template <typename T>
-typename MutantStack<T>::reverse_iterator			MutantStack<T>::rbegin(void)
+typename MutantStack<T>::reverse_iterator		MutantStack<T>::rbegin(void)
 {
 	return (this->c.rbegin());
 }
 
 template <typename T>
-typename MutantStack<T>::reverse_iterator			MutantStack<T>::rend(void)
+typename MutantStack<T>::reverse_iterator		MutantStack<T>::rend(void)
 {
 	return (this->c.rend());
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator				MutantStack<T>::cbegin(void) const
+typename MutantStack<T>::const_iterator			MutantStack<T>::cbegin(void) const
 {
 	return (this->c.cbegin());
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator				MutantStack<T>::cend(void) const
+typename MutantStack<T>::const_iterator			MutantStack<T>::cend(void) const
 {
 	return (this->c.cend());
 }
 
 template <typename T>
-typename MutantStack<T>::const_reverse_iterator		MutantStack<T>::crbegin(void) const
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::crbegin(void) const
 {
 	return (this->c.crbegin());
 }
 
 template <typename T>
-typename MutantStack<T>::const_reverse_iterator		MutantStack<T>::crend(void) const
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::crend(void) const
 {
 	return (this->c.crend());
 }

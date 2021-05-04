@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:09:26 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/01 08:38:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/04 13:21:17 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static std::string	get_operation(t_tok const &rTok)
 void				print_step(t_tok const &rTok, MutantStack<t_tok> const &rStack)
 {
 
-	// Set left-justified field formatting.
+	//	Set left-justified field formatting.
 	std::cout.setf(std::ios::left, std::ios::adjustfield);
 	std::cout << "I " << std::setw(12) << rTok;
 	std::cout << "| " << std::setw(12) << get_operation(rTok);
@@ -75,14 +75,14 @@ void				print_step(t_tok const &rTok, MutantStack<t_tok> const &rStack)
 	for (MutantStack<t_tok>::const_reverse_iterator it = rStack.crbegin(); it != rStack.crend(); ++it)
 		std::cout << " " << it->fixedNum;
 	std::cout << "]" << std::endl;
-	// Clear field formatting.
+	//	Clear field formatting.
 	std::cout.setf(std::ios::adjustfield);
 }
 
 std::ostream		&operator<<(std::ostream &rOs, t_tok const &rRhs)
 {
-	// Note: use ostringstream object in order to buffer output for
-	// ostream in case some formatting is applied.
+	//	Note: use ostringstream object in order to buffer output for
+	//	ostream in case some formatting is applied.
 	std::ostringstream	oss;
 
 	if (rRhs.type == TT_NUMBER)

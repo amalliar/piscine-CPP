@@ -6,12 +6,14 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 22:54:05 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/21 20:03:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/03 19:27:19 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <cerrno>
+#include <cstring>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <sys/stat.h>
 

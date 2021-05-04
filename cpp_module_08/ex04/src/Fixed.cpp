@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 04:08:54 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/02 13:50:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/04 13:20:40 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int				Fixed::toInt(void) const
 
 float			Fixed::toFloat(void) const
 {
-	// Shift the fixed point _fractBits positions to the left
-	// so that the fractional part is actually fractional.
+	//	Shift the fixed point _fractBits positions to the left
+	//	so that the fractional part is actually fractional.
 	return ((float)_value / (1 << _fractBits));
 }
 
@@ -71,8 +71,8 @@ Fixed const		&Fixed::max(Fixed const &rLhs, Fixed const &rRhs)
 
 				Fixed::Fixed(float const fNum)
 {
-	// Shift the fixed point _fractBits positions to the right
-	// so that the fractional part is now integer.
+	//	Shift the fixed point _fractBits positions to the right
+	//	so that the fractional part is now integer.
 	_value = roundf(fNum * (1 << _fractBits));
 }
 

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 05:01:53 by amalliar          #+#    #+#             */
-/*   Updated: 2021/04/27 00:34:53 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:51:13 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ std::list<t_tok>	*lexer_build(std::string const &rExpr)
 	std::list<t_tok>	*p_tok_list = new std::list<t_tok>;
 	t_tok				token;
 	std::string			char_parenth = "()";
-	std::string			char_operator = "+-*/";  // Note: all of these operators are left-associative.
+	std::string			char_operator = "+-*/";  //	all of these operators are left-associative
 	std::string			char_number = "0123456789.";
 	char				c;
 
