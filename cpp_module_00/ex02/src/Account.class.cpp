@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:27:24 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/01 16:48:32 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/06 23:13:44 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,24 @@ int				Account::getNbCheckAmountCalls(void) const
 	if (initial_deposit < 0)
 		_amount = 0;
 	_accountIndex = Account::_nbAccounts;
-	Account::_nbAccounts += 1;
 	_displayTimestamp();
 	std::cout << " ";
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "created" << std::endl;
+	Account::_nbAccounts += 1;
 	Account::_totalAmount += _amount;
 }
 
 				Account::~Account(void)
 {
-	Account::_nbAccounts -= 1;
 	_displayTimestamp();
 	std::cout << " ";
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "closed" << std::endl;
+	Account::_nbAccounts -= 1;
+	Account::_totalAmount -= _amount;
 }
 
 void			Account::displayAccountsInfos(void)
@@ -167,10 +168,10 @@ void			Account::_displayTimestamp(void)
 				_nbCheckAmountCalls(0)
 {
 	_accountIndex = Account::_nbAccounts;
-	Account::_nbAccounts += 1;
 	_displayTimestamp();
 	std::cout << " ";
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "created" << std::endl;
+	Account::_nbAccounts += 1;
 }
